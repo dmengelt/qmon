@@ -1,4 +1,4 @@
-package ch.filecloud.queuemonitor.api.queue;
+package ch.filecloud.queuemonitor.web.api.queue;
 
 import ch.filecloud.queuemonitor.domain.QueueInfo;
 import ch.filecloud.queuemonitor.service.QueueControlService;
@@ -20,7 +20,7 @@ public class QueueMonitorController {
     @Inject
     private QueueControlService queueControlService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = { "", "/" }, method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public QueueInfoResponseDTO getQueues() {
         return new QueueInfoResponseDTO(queueControlService.getQueues());

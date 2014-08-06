@@ -1,23 +1,51 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
+<h4>Queues ({{queues.length}})</h4>
+<table class="table table-hover" ng-init="loadQueues()">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Message count</th>
+        <th>Messages Added</th>
+        <th allign="right">&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat='queue in queues'>
+        <td>{{queue.queueName}}</td>
+        <td>{{queue.messageCount}}</td>
+        <td>{{queue.messagesAdded}}</td>
+        <td align="right">
+            <button type="button" class="btn btn-info">Info</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+<h4>Topics ({{topics.length}})</h4>
+<table class="table table-hover" ng-init="loadTopics()">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Message count</th>
+        <th>Messages Added</th>
+        <th>Subscription count</th>
+        <th allign="right">&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat='topic in topics'>
+        <td>{{topic.name}}</td>
+        <td>{{topic.messageCount}}</td>
+        <td>{{topic.messagesAdded}}</td>
+        <td>{{topic.subscribtionCount}}</td>
+        <td align="right">
+            <button type="button" class="btn btn-info">Info</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
 
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>
+
+
+
+

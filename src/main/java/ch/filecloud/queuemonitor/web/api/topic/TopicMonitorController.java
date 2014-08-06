@@ -1,8 +1,7 @@
-package ch.filecloud.queuemonitor.api.topic;
+package ch.filecloud.queuemonitor.web.api.topic;
 
 import ch.filecloud.queuemonitor.domain.TopicInfo;
 import ch.filecloud.queuemonitor.service.TopicControlService;
-import org.hornetq.api.jms.management.SubscriptionInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +20,7 @@ public class TopicMonitorController {
     @Inject
     private TopicControlService topicControlService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = { "", "/" }, method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public TopicInfoResponseDTO getTopics() {
         return new TopicInfoResponseDTO(topicControlService.getTopics());

@@ -1,17 +1,26 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name hornetqMonitorApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the testAppApp
- */
 angular.module('hornetqMonitorApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    .controller('MainController', function ($scope, $http) {
+
+        $scope.loadQueues = function () {
+            $http.get('http://localhost:8080/monitor/queues').success(function(data, status, headers, config) {
+                console.log('Successfully retrieved list of configured queues');
+                $scope.queues = data.queues;
+            }).error(function(data, status, headers, config) {
+                console.log('An error occured while trying to lookup the configures queues');
+            });
+
+        };
+
+        $scope.loadTopics = function () {
+            $http.get('http://localhost:8080/monitor/topics').success(function(data, status, headers, config) {
+                console.log('Successfully retrieved list of configured topics');
+                $scope.topics = data.topics;
+            }).error(function(data, status, headers, config) {
+                console.log('An error occured while trying to lookup the configured topics');
+            });
+
+        };
+
+    });

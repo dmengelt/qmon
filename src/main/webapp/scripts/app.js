@@ -1,14 +1,21 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name hornetqMonitorApp
- * @description
- * # hornetqMonitorApp
- *
- * Main module of the application.
- */
-angular
-  .module('hornetqMonitorApp', [
-    'ngCookies'
-  ]);
+var hornetqMonitorApp = angular.module('hornetqMonitorApp', [
+    'ngCookies',
+    'ngResource',
+    'ngRoute'
+]);
+
+hornetqMonitorApp.config(['$routeProvider',
+    function ($routeProvider) {
+        $routeProvider.
+            when('/', {
+                templateUrl: 'views/main.html',
+                controller: 'MainController'
+            }).
+            otherwise({
+                redirectTo: '/'
+            });
+    }
+]);
+

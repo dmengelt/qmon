@@ -1,4 +1,4 @@
-package ch.filecloud.queuemonitor.api.topic;
+package ch.filecloud.queuemonitor.web.api.topic;
 
 import ch.filecloud.queuemonitor.domain.TopicInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
