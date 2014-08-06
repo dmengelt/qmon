@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -26,12 +27,24 @@ public class App {
 
     private static Log LOGGER = LogFactory.getLog(App.class);
 
-    private final String REMOTE_JMX_URL = "service:jmx:rmi://localhost/jndi/rmi://localhost:9005/jmxrmi";
+    private final String REMOTE_JMX_URL_PREFIX = "service:jmx:rmi://localhost/jndi/rmi://";
+    private final String REMOTE_JMX_URL_SUFFIX = "/jmxrmi";
+    private final String REMOTE_JMX_URL_DEFAULT = "localhost:9005";
+
+    @Value("#{ systemProperties['qmon.remote.jmx.url'] }")
+    private String remoteJmxUrl;
 
     @Bean
     protected MBeanServerConnectionFactoryBean getMBeanServerConnectionFactoryBean() throws MalformedURLException {
         MBeanServerConnectionFactoryBean mBeanServerConnectionFactoryBean = new MBeanServerConnectionFactoryBean();
-        mBeanServerConnectionFactoryBean.setServiceUrl(REMOTE_JMX_URL);
+
+        if(remoteJmxUrl == null) {
+            remoteJmxUrl = REMOTE_JMX_URL_DEFAULT;
+        }
+
+        LOGGER.info("Using JMX URL " + remoteJmxUrl);
+
+        mBeanServerConnectionFactoryBean.setServiceUrl(REMOTE_JMX_URL_PREFIX + remoteJmxUrl + REMOTE_JMX_URL_SUFFIX);
         return mBeanServerConnectionFactoryBean;
     }
 

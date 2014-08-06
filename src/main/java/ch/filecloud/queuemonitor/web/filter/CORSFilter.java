@@ -1,4 +1,4 @@
-package ch.filecloud.queuemonitor.web.api.filter;
+package ch.filecloud.queuemonitor.web.filter;
 
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,6 @@ public class CORSFilter implements Filter{
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
@@ -28,7 +27,6 @@ public class CORSFilter implements Filter{
 
     @Override
     public void destroy() {
-
     }
 
 }
