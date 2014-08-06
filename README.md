@@ -1,4 +1,4 @@
-### Usage
+#### Usage
 
 ```sh
 $ mvn clean package
