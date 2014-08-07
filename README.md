@@ -1,4 +1,9 @@
-#### Usage
+#### Installation & Usage
+
+```sh
+$ npm install -g yo
+$ bower update
+```
 
 ```sh
 $ mvn clean package
