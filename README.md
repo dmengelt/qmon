@@ -2,8 +2,18 @@
 
 ```sh
 $ mvn clean package
-$ java -Dqmon.remote.jmx.url=localhost:9005 -jar target/ch.filecloud.queue-monitor-0.0.1-SNAPSHOT.jar
+$ java -Dqmon.remote.jmx.url=localhost:<your-port> -jar target/ch.filecloud.queue-monitor-0.0.1-SNAPSHOT.jar
 ```
 The application will be available on http://localhost:8080
+
+Make sure your HornetQ enabled server was started with the following properites:
+
+```sh
+-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote.authenticate=false
+-Dcom.sun.management.jmxremote.local.only=false
+-Dcom.sun.management.jmxremote.port=<your-port>
+```
+
 
 
