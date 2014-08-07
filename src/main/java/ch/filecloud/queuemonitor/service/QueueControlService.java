@@ -46,7 +46,10 @@ public class QueueControlService extends ControlService {
     private QueueInfo createQueueInfo(String queueName) {
         try {
             JMSQueueControl jmsQueueControl = getJMSQueueControl(queueName);
-            return new QueueInfo(queueName, jmsQueueControl.getMessageCount(), jmsQueueControl.getMessagesAdded());
+            return new QueueInfo(queueName,
+                                 jmsQueueControl.getMessageCount(),
+                                 jmsQueueControl.getMessagesAdded(),
+                                 jmsQueueControl.getConsumerCount());
         } catch (Exception e) {
             LOGGER.error("Error occurred during lookup of queues", e);
             // TODO - throw custom exception and add global exception handler (spring aop or @ExceptionHandler)

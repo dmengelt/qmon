@@ -1,8 +1,0 @@
-java -jar -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.port=9005 -jar target/spring-boot-sample-hornetq-1.2.0.BUILD-SNAPSHOT.jar
-
-## OR ##
-
-mvn spring-boot:run -Drun.jvmArguments="-Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.port=9005"
-
-ps -ef | grep -i java
-lsof -p 10007 -n | grep TCP

@@ -44,7 +44,10 @@ public class TopicControlService extends ControlService {
     private TopicInfo createTopicInfo(String topicName) {
         try {
             TopicControl topicControl = getTopicControl(topicName);
-            return new TopicInfo(topicName, topicControl.getMessageCount(), topicControl.getMessagesAdded(), topicControl.getSubscriptionCount());
+            return new TopicInfo(topicName,
+                                 topicControl.getMessageCount(),
+                                 topicControl.getMessagesAdded(),
+                                 topicControl.getSubscriptionCount());
         } catch (Exception e) {
             LOGGER.error("Error occurred while trying to create the topic information for topic " + topicName, e);
             // TODO - throw custom exception and add global exception handler (spring aop or @ExceptionHandler)

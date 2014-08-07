@@ -8,11 +8,13 @@ public final class QueueInfo {
     private final String queueName;
     private final long messageCount;
     private final long messagesAdded;
+    private final long consumerCount;
 
-    public QueueInfo(String queueName, long messageCount, long messagesAddes) {
+    public QueueInfo(String queueName, long messageCount, long messagesAddes, long consumerCount) {
         this.queueName = queueName;
         this.messageCount = messageCount;
         this.messagesAdded = messagesAddes;
+        this.consumerCount = consumerCount;
     }
 
     public String getQueueName() {
@@ -25,5 +27,9 @@ public final class QueueInfo {
 
     public long getMessagesAdded() {
         return messagesAdded;
+    }
+
+    public long getConsumerCount() {
+        return consumerCount;
     }
 }
