@@ -24,7 +24,6 @@ public class QueueControlService extends ControlService {
     public List<QueueInfo> getQueues() {
         List<QueueInfo> queueInfos = new ArrayList<QueueInfo>();
             for (String queue : getJMSServerControl().getQueueNames()) {
-                LOGGER.info("Creating queue info object for queue with name " + queue);
                 queueInfos.add(createQueueInfo(queue.replace(JMS_QUEUE_PREFIX,"")));
             }
         return queueInfos;
