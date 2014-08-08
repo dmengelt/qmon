@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.jmx.export.annotation.AnnotationMBeanExporter;
 import org.springframework.jmx.support.MBeanServerConnectionFactoryBean;
 
 import javax.servlet.ServletContextEvent;
@@ -47,6 +48,12 @@ public class App {
         mBeanServerConnectionFactoryBean.setServiceUrl(REMOTE_JMX_URL_PREFIX + remoteJmxUrl + REMOTE_JMX_URL_SUFFIX);
         return mBeanServerConnectionFactoryBean;
     }
+
+//    @Bean
+//    public AnnotationMBeanExporter annotationMBeanExporter() {
+//        AnnotationMBeanExporter annotationMBeanExporter = new AnnotationMBeanExporter();
+//        return new AnnotationMBeanExporter();
+//    }
 
     @Bean
     protected ObjectMapper getObjectMapper() {

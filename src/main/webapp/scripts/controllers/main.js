@@ -4,7 +4,7 @@ angular.module('hornetqMonitorApp')
     .controller('MainController', function ($scope, $http) {
 
         $scope.loadQueues = function () {
-            $http.get('http://localhost:8080/monitor/queues').success(function(data, status, headers, config) {
+            $http.get('/monitor/queues').success(function(data, status, headers, config) {
                 console.log('Successfully retrieved list of configured queues');
                 $scope.queues = data.queues;
             }).error(function(data, status, headers, config) {
@@ -14,7 +14,7 @@ angular.module('hornetqMonitorApp')
         };
 
         $scope.loadTopics = function () {
-            $http.get('http://localhost:8080/monitor/topics').success(function(data, status, headers, config) {
+            $http.get('/monitor/topics').success(function(data, status, headers, config) {
                 console.log('Successfully retrieved list of configured topics');
                 $scope.topics = data.topics;
             }).error(function(data, status, headers, config) {
