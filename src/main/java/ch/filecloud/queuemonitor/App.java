@@ -11,11 +11,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.jmx.export.annotation.AnnotationMBeanExporter;
 import org.springframework.jmx.support.MBeanServerConnectionFactoryBean;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
+import static ch.filecloud.queuemonitor.common.Consts.*;
+
 import java.net.MalformedURLException;
 
 /**
@@ -32,7 +31,7 @@ public class App {
     private final String REMOTE_JMX_URL_SUFFIX = "/jmxrmi";
     private final String REMOTE_JMX_URL_DEFAULT = "localhost:9005";
 
-    @Value("#{ systemProperties['qmon.remote.jmx.url'] }")
+    @Value("#{ systemProperties['" + JMX_REMOTE_URL_PROPERTY +"'] }")
     private String remoteJmxUrl;
 
     @Bean
