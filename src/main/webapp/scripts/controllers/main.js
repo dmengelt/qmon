@@ -30,4 +30,10 @@ angular.module('hornetqMonitorApp')
 
         };
 
+        $scope.init = function() {
+            $scope.a = 'Apples';
+            $scope.b = 'Bees';
+            $scope.c = 'Zebras';
+        };
+
     });

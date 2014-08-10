@@ -37,10 +37,10 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">qMon</a>
                 </div>
-                <div>
+                <div ng-controller="MainController" ng-init="loadQueues(); loadTopics()"> <!-- TODO - refactor to service -->
                     <ul class="nav navbar-nav">
-                        <li><a href="#/queues">Queues</a></li>
-                        <li><a href="#/topics">Topics</a></li>
+                        <li><a href="#/queues">Queues <span class="badge">{{queues.length}}</span></a></li>
+                        <li><a href="#/topics">Topics <span class="badge">{{topics.length}}</span></a></li>
                     </ul>
                 </div>
                 <div ng-controller="MainController" ng-init="getEnvironmenetInfo()">
