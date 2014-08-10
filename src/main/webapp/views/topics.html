@@ -1,0 +1,23 @@
+<h4>Topics ({{topics.length}})</h4>
+<table class="table table-hover" ng-init="loadTopics()">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Message count</th>
+        <th>Messages Added</th>
+        <th>Subscription count</th>
+        <th allign="right">&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat='topic in topics'>
+        <td>{{topic.name}}</td>
+        <td>{{topic.messageCount}}</td>
+        <td>{{topic.messagesAdded}}</td>
+        <td>{{topic.subscribtionCount}}</td>
+        <td align="right">
+            <button type="button" class="btn btn-info">Info</button>
+        </td>
+    </tr>
+    </tbody>
+</table>

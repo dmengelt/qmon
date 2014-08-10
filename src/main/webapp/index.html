@@ -39,8 +39,8 @@
                 </div>
                 <div>
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Queues</a></li>
-                        <li><a href="#">Topics</a></li>
+                        <li><a href="#/queues">Queues</a></li>
+                        <li><a href="#/topics">Topics</a></li>
                     </ul>
                 </div>
                 <div ng-controller="MainController" ng-init="getEnvironmenetInfo()">
@@ -85,6 +85,8 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/queues.js"></script>
+    <script src="scripts/controllers/topics.js"></script>
     <!-- endbuild -->
 </body>
 </html>

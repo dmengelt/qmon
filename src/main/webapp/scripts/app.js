@@ -13,6 +13,14 @@ hornetqMonitorApp.config(['$routeProvider',
                 templateUrl: 'views/main.html',
                 controller: 'MainController'
             }).
+            when('/queues', {
+                templateUrl: 'views/queues.html',
+                controller: 'QueueController'
+            }).
+            when('/topics', {
+                templateUrl: 'views/topics.html',
+                controller: 'TopicController'
+            }).
             otherwise({
                 redirectTo: '/'
             });
