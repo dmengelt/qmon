@@ -1,12 +1,14 @@
 #### Installation & Usage
-Install [node.js](http://nodejs.org/download/)
+1) Install [node.js](http://nodejs.org/download/), [Maven](http://maven.apache.org/download.cgi) and [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
+2) Install [yeoman](http://yeoman.io/) and the used bower packages:
 ```sh
 $ npm install -g yo
 $ cd <qmon-dir>
 $ bower update
 ```
 
+3) Build and Run
 ```sh
 $ mvn clean package
 $ java -Dqmon.remote.jmx.url=<your-jmx-host>:<your-jmx-port> -Dserver.port=<server-port> -jar target/ch.filecloud.queue-monitor-0.0.1-SNAPSHOT.jar
