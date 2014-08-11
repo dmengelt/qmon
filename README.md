@@ -1,8 +1,9 @@
 #### Installation & Usage
+Install [node.js](http://nodejs.org/download/)
 
 ```sh
 $ npm install -g yo
-$ cd <checkout-dir>
+$ cd <qmon-dir>
 $ bower update
 ```
 
