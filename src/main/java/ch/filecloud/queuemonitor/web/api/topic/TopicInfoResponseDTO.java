@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by domi on 8/5/14.
  */
-public class TopicInfoResponseDTO {
+public class    TopicInfoResponseDTO {
 
     public static final String TOPICS = "topics";
     private List<TopicInfo> topicInfos;

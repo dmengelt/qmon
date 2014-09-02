@@ -2,11 +2,9 @@ package ch.filecloud.queuemonitor.web.api.topic;
 
 import ch.filecloud.queuemonitor.domain.TopicInfo;
 import ch.filecloud.queuemonitor.service.TopicControlService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 
@@ -30,6 +28,12 @@ public class TopicMonitorController {
     @ResponseBody
     public TopicInfo getTopic(@PathVariable("topicName") String topicName) {
         return topicControlService.getTopic(topicName);
+    }
+
+    @RequestMapping(value = "/{topicName}/{subscribtionName}", method = RequestMethod.DELETE, produces = "application/json")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void dropSubscription(@PathVariable("topicName") String topicName, @PathVariable("subscribtionName") String subscribtionName) {
+        topicControlService.dropDurableSubscription(topicName, subscribtionName);
     }
 
 

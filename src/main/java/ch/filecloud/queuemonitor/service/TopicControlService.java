@@ -38,7 +38,24 @@ public class TopicControlService extends ControlService {
     }
 
     public List<SubscriptionInfo> getSubscribtions(String topicName) {
-        return createSubscriptionInfo(topicName);
+        return getSubscriptionInfo(topicName);
+    }
+
+    // TODO - should maybe return a boolean to indicate if deletion was successful
+    public void dropDurableSubscription(String topicName, String subscribtionName) {
+        TopicControl topicControl = getTopicControl(topicName);
+
+        List<SubscriptionInfo> subscriptions = getSubscriptionInfo(topicName);
+
+        for(SubscriptionInfo subscription : subscriptions) {
+            if(subscription.getName().equals(subscribtionName)) {
+                try {
+                    topicControl.dropDurableSubscription(subscription.getClientID(), subscription.getName());
+                } catch (Exception e) {
+                    LOGGER.error("Error occurred while trying to delete the subscription " + subscribtionName + " for topic " + topicName, e);
+                }
+            }
+        }
     }
 
     private TopicInfo createTopicInfo(String topicName) {
@@ -55,7 +72,7 @@ public class TopicControlService extends ControlService {
         }
     }
 
-    private List<SubscriptionInfo> createSubscriptionInfo(String topicName) {
+    private List<SubscriptionInfo> getSubscriptionInfo(String topicName) {
         try {
             TopicControl topicControl = getTopicControl(topicName);
             return Arrays.asList(SubscriptionInfo.from(topicControl.listAllSubscriptionsAsJSON()));
