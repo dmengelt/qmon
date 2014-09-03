@@ -1,11 +1,11 @@
 #### Installation & Usage
 1) Install [node.js](http://nodejs.org/download/), [Maven](http://maven.apache.org/download.cgi) and [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
-2) Install [yeoman](http://yeoman.io/) and the used bower packages:
+2) Install [bower](http://bower.io/) and the used bower packages:
 ```sh
-$ npm install -g yo
+$ npm install -g bower
 $ cd <qmon-dir>
-$ bower update
+$ bower install
 ```
 
 3) Build and Run
