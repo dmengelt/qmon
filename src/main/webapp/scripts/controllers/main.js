@@ -9,7 +9,6 @@ angular.module('hornetqMonitorApp')
             }).error(function(data, status, headers, config) {
                 console.log('An error occured while trying to lookup the configures queues');
             });
-
         };
 
         $scope.loadTopics = function () {
@@ -18,7 +17,6 @@ angular.module('hornetqMonitorApp')
             }).error(function(data, status, headers, config) {
                 console.log('An error occured while trying to lookup the configured topics');
             });
-
         };
 
         $scope.getEnvironmenetInfo = function () {
@@ -27,13 +25,6 @@ angular.module('hornetqMonitorApp')
             }).error(function(data, status, headers, config) {
                 console.log('An error occured while trying to lookup the environment information');
             });
-
-        };
-
-        $scope.init = function() {
-            $scope.a = 'Apples';
-            $scope.b = 'Bees';
-            $scope.c = 'Zebras';
         };
 
     });
