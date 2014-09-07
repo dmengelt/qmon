@@ -1,10 +1,10 @@
 package ch.filecloud.queuemonitor.service;
 
 import ch.filecloud.queuemonitor.domain.TopicInfo;
+import ch.filecloud.queuemonitor.service.exception.QmonServiceException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hornetq.api.core.management.ObjectNameBuilder;
-import org.hornetq.api.jms.management.JMSServerControl;
 import org.hornetq.api.jms.management.SubscriptionInfo;
 import org.hornetq.api.jms.management.TopicControl;
 import org.springframework.stereotype.Component;
@@ -23,8 +23,6 @@ public class TopicControlService extends ControlService {
 
     public List<TopicInfo> getTopics() {
         List<TopicInfo> topicInfos = new ArrayList<TopicInfo>();
-
-        JMSServerControl jmsServerControl = getJMSServerControl();
 
         for (String topic : getJMSServerControl().getTopicNames()) {
             topicInfos.add(createTopicInfo(topic));
@@ -53,6 +51,7 @@ public class TopicControlService extends ControlService {
                     topicControl.dropDurableSubscription(subscription.getClientID(), subscription.getName());
                 } catch (Exception e) {
                     LOGGER.error("Error occurred while trying to delete the subscription " + subscribtionName + " for topic " + topicName, e);
+                    throw new QmonServiceException(e);
                 }
             }
         }
@@ -66,9 +65,7 @@ public class TopicControlService extends ControlService {
                                  topicControl.getMessagesAdded(),
                                  topicControl.getSubscriptionCount());
         } catch (Exception e) {
-            LOGGER.error("Error occurred while trying to create the topic information for topic " + topicName, e);
-            // TODO - throw custom exception and add global exception handler (spring aop or @ExceptionHandler)
-            return null;
+            throw new QmonServiceException(e);
         }
     }
 
@@ -78,8 +75,7 @@ public class TopicControlService extends ControlService {
             return Arrays.asList(SubscriptionInfo.from(topicControl.listAllSubscriptionsAsJSON()));
         } catch (Exception e) {
             LOGGER.error("Error occurred while trying to get the subscriptions for topic " + topicName, e);
-            // TODO - throw custom exception and add global exception handler (spring aop or @ExceptionHandler)
-            return null;
+            throw new QmonServiceException(e);
         }
     }
 

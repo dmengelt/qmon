@@ -1,6 +1,7 @@
 package ch.filecloud.queuemonitor.service;
 
 import ch.filecloud.queuemonitor.domain.QueueInfo;
+import ch.filecloud.queuemonitor.service.exception.QmonServiceException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hornetq.api.core.management.ObjectNameBuilder;
@@ -50,9 +51,7 @@ public class QueueControlService extends ControlService {
                                  jmsQueueControl.getMessagesAdded(),
                                  jmsQueueControl.getConsumerCount());
         } catch (Exception e) {
-            LOGGER.error("Error occurred during lookup of queues", e);
-            // TODO - throw custom exception and add global exception handler (spring aop or @ExceptionHandler)
-            return null;
+            throw new QmonServiceException("Error occurred during lookup of queues", e);
         }
     }
 
