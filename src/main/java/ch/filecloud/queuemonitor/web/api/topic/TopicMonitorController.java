@@ -2,7 +2,9 @@ package ch.filecloud.queuemonitor.web.api.topic;
 
 import ch.filecloud.queuemonitor.domain.TopicInfo;
 import ch.filecloud.queuemonitor.service.TopicControlService;
+import ch.filecloud.queuemonitor.service.exception.TopicSubscriptionNotFoundException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,8 +34,13 @@ public class TopicMonitorController {
 
     @RequestMapping(value = "/{topicName}/{subscribtionName}", method = RequestMethod.DELETE, produces = "application/json")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void dropDurableSubscription(@PathVariable("topicName") String topicName, @PathVariable("subscribtionName") String subscribtionName) {
-        topicControlService.dropDurableSubscription(topicName, subscribtionName);
+    public ResponseEntity<String> dropDurableSubscription(@PathVariable("topicName") String topicName, @PathVariable("subscribtionName") String subscribtionName) {
+        try {
+            topicControlService.dropDurableSubscription(topicName, subscribtionName);
+            return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
+        } catch (TopicSubscriptionNotFoundException e) {
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 

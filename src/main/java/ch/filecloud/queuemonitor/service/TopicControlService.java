@@ -1,7 +1,8 @@
 package ch.filecloud.queuemonitor.service;
 
 import ch.filecloud.queuemonitor.domain.TopicInfo;
-import ch.filecloud.queuemonitor.service.exception.QmonServiceException;
+import ch.filecloud.queuemonitor.service.exception.QmonConnectionException;
+import ch.filecloud.queuemonitor.service.exception.TopicSubscriptionNotFoundException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hornetq.api.core.management.ObjectNameBuilder;
@@ -39,22 +40,25 @@ public class TopicControlService extends ControlService {
         return getSubscriptionInfo(topicName);
     }
 
-    // TODO - should maybe return a boolean to indicate if deletion was successful
-    public void dropDurableSubscription(String topicName, String subscribtionName) {
+    public void dropDurableSubscription(String topicName, String subscriptionName) throws TopicSubscriptionNotFoundException {
         TopicControl topicControl = getTopicControl(topicName);
 
         List<SubscriptionInfo> subscriptions = getSubscriptionInfo(topicName);
 
-        for(SubscriptionInfo subscription : subscriptions) {
-            if(subscription.getName().equals(subscribtionName)) {
-                try {
-                    topicControl.dropDurableSubscription(subscription.getClientID(), subscription.getName());
-                } catch (Exception e) {
-                    LOGGER.error("Error occurred while trying to delete the subscription " + subscribtionName + " for topic " + topicName, e);
-                    throw new QmonServiceException(e);
+        if(subscriptions != null && subscriptions.size() > 0) {
+            for(SubscriptionInfo subscription : subscriptions) {
+                if(subscription.getQueueName().equals(subscriptionName)) {
+                    try {
+                        topicControl.dropDurableSubscription(subscription.getClientID(), subscription.getName());
+                    } catch (Exception e) {
+                        LOGGER.error("Error occurred while trying to delete the subscription " + subscriptionName + " for topic " + topicName, e);
+                        throw new QmonConnectionException(e);
+                    }
                 }
             }
         }
+
+        throw new TopicSubscriptionNotFoundException();
     }
 
     private TopicInfo createTopicInfo(String topicName) {
@@ -65,17 +69,18 @@ public class TopicControlService extends ControlService {
                                  topicControl.getMessagesAdded(),
                                  topicControl.getSubscriptionCount());
         } catch (Exception e) {
-            throw new QmonServiceException(e);
+            throw new QmonConnectionException(e);
         }
     }
 
     private List<SubscriptionInfo> getSubscriptionInfo(String topicName) {
         try {
             TopicControl topicControl = getTopicControl(topicName);
+            // TODO - switch to durable subscription
             return Arrays.asList(SubscriptionInfo.from(topicControl.listAllSubscriptionsAsJSON()));
         } catch (Exception e) {
             LOGGER.error("Error occurred while trying to get the subscriptions for topic " + topicName, e);
-            throw new QmonServiceException(e);
+            throw new QmonConnectionException(e);
         }
     }
 

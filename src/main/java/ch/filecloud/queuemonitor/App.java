@@ -48,12 +48,6 @@ public class App {
         return mBeanServerConnectionFactoryBean;
     }
 
-//    @Bean
-//    public AnnotationMBeanExporter annotationMBeanExporter() {
-//        AnnotationMBeanExporter annotationMBeanExporter = new AnnotationMBeanExporter();
-//        return new AnnotationMBeanExporter();
-//    }
-
     @Bean
     protected ObjectMapper getObjectMapper() {
         ObjectMapper jacksonMapper = new ObjectMapper();
