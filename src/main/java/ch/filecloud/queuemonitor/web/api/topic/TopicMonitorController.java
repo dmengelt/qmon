@@ -39,9 +39,8 @@ public class TopicMonitorController {
             topicControlService.dropDurableSubscription(topicName, subscribtionName);
             return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
         } catch (TopicSubscriptionNotFoundException e) {
-            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Unable to find subscription '" + subscribtionName + "' for topic '" + topicName + "'",HttpStatus.NOT_FOUND);
         }
     }
-
 
 }

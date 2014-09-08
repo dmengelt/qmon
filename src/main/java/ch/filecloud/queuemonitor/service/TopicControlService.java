@@ -76,8 +76,7 @@ public class TopicControlService extends ControlService {
     private List<SubscriptionInfo> getSubscriptionInfo(String topicName) {
         try {
             TopicControl topicControl = getTopicControl(topicName);
-            // TODO - switch to durable subscription
-            return Arrays.asList(SubscriptionInfo.from(topicControl.listAllSubscriptionsAsJSON()));
+            return Arrays.asList(SubscriptionInfo.from(topicControl.listDurableSubscriptionsAsJSON()));
         } catch (Exception e) {
             LOGGER.error("Error occurred while trying to get the subscriptions for topic " + topicName, e);
             throw new QmonConnectionException(e);

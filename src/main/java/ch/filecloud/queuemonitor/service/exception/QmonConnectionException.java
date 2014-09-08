@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  * Created by domi on 9/7/14.
  */
-@ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR, reason="Unable to get monitoring information from HornetQ")
+@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Unable to get monitoring information from HornetQ")
 public class QmonConnectionException extends RuntimeException {
 
     public QmonConnectionException(Exception exception) {
