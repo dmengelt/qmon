@@ -1,6 +1,6 @@
 package ch.filecloud.queuemonitor.web.api.queue;
 
-import ch.filecloud.queuemonitor.domain.QueueInfo;
+import ch.filecloud.queuemonitor.service.queue.QueueInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;

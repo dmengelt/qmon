@@ -1,7 +1,7 @@
 package ch.filecloud.queuemonitor.web.api.queue;
 
-import ch.filecloud.queuemonitor.domain.QueueInfo;
-import ch.filecloud.queuemonitor.service.QueueControlService;
+import ch.filecloud.queuemonitor.service.queue.QueueInfo;
+import ch.filecloud.queuemonitor.service.queue.QueueControlService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
