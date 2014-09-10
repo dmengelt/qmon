@@ -1,23 +1,26 @@
-<h4>Topics</h4>
-<table class="table table-hover" ng-if="topics.length !== 0" ng-init="loadTopics()">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Message count</th>
-        <th>Messages Added</th>
-        <th>Subscription count</th>
-        <th allign="right">&nbsp;</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat='topic in topics'>
-        <td>{{topic.name}}</td>
-        <td>{{topic.messageCount}}</td>
-        <td>{{topic.messagesAdded}}</td>
-        <td>{{topic.subscribtionCount}}</td>
-        <td align="right">
-            <button type="button" class="btn btn-info">Info</button>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div ng-init="loadTopics()">
+    <h4>Topics</h4>
+    <div class="alert alert-warning" role="alert" ng-hide="topics.length !== 0">No active topics found!</div>
+    <table class="table table-hover" ng-show="topics.length !== 0">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Message count</th>
+            <th>Messages Added</th>
+            <th>Subscription count</th>
+            <th allign="right">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat='topic in topics'>
+            <td>{{topic.name}}</td>
+            <td>{{topic.messageCount}}</td>
+            <td>{{topic.messagesAdded}}</td>
+            <td>{{topic.subscribtionCount}}</td>
+            <td align="right">
+                <a ng-href="#/topics/{{topic.name}}"><button type="button" class="btn btn-info">Info</button></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

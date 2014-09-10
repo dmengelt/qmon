@@ -21,6 +21,10 @@ hornetqMonitorApp.config(['$routeProvider',
                 templateUrl: 'views/topics.html',
                 controller: 'TopicController'
             }).
+            when('/topics/:topicName', {
+                templateUrl: 'views/topic-detail.html',
+                controller: 'TopicDetailController'
+            }).
             otherwise({
                 redirectTo: '/'
             });

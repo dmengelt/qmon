@@ -37,10 +37,10 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">qMon</a>
                 </div>
-                <div ng-controller="MainController" ng-init="loadQueues(); loadTopics()"> <!-- TODO - refactor to service -->
+                <div ng-controller="QueueController"> <!-- TODO - refactor to service -->
                     <ul class="nav navbar-nav">
-                        <li><a href="#/queues">Queues <span class="badge">{{queues.length}}</span></a></li>
-                        <li><a href="#/topics">Topics <span class="badge">{{topics.length}}</span></a></li>
+                        <li><a href="#/queues">Queues <span class="badge" ng-model="queues">{{queues.length}}</span></a></li>
+                        <li><a href="#/topics">Topics <span class="badge" ng-controller="TopicController">{{topics.length}}</span></a></li>
                     </ul>
                 </div>
                 <div ng-controller="MainController" ng-init="getEnvironmenetInfo()">
@@ -87,6 +87,7 @@
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/queues.js"></script>
     <script src="scripts/controllers/topics.js"></script>
+    <script src="scripts/controllers/topic-detail.js"></script>
     <!-- endbuild -->
 </body>
 </html>
