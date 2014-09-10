@@ -1,26 +1,28 @@
 <h4>Queues</h4>
-<table class="table table-hover" ng-init="loadQueues()">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Message count</th>
-        <th>Messages Added</th>
-        <th>Consumer count</th>
-        <!-- <th allign="right">&nbsp;</th> -->
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat='queue in queues'>
-        <td>{{queue.queueName}}</td>
-        <td>{{queue.messageCount}}</td>
-        <td>{{queue.messagesAdded}}</td>
-        <td>{{queue.consumerCount}}</td>
-        <!--
-        <td align="right">
-            <button type="button" class="btn btn-info">Info</button>
-        </td>
-        -->
-    </tr>
-    </tbody>
-</table>
+<div ng-init="loadQueues()">
+    <table class="table table-hover" ng-show="queues.length !== 0">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Message count</th>
+            <th>Messages Added</th>
+            <th>Consumer count</th>
+            <!-- <th allign="right">&nbsp;</th> -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat='queue in queues'>
+            <td>{{queue.queueName}}</td>
+            <td>{{queue.messageCount}}</td>
+            <td>{{queue.messagesAdded}}</td>
+            <td>{{queue.consumerCount}}</td>
+            <!--
+            <td align="right">
+                <button type="button" class="btn btn-info">Info</button>
+            </td>
+            -->
+        </tr>
+        </tbody>
+    </table>
+</div>
 

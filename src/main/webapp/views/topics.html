@@ -1,5 +1,5 @@
 <h4>Topics</h4>
-<table class="table table-hover" ng-init="loadTopics()">
+<table class="table table-hover" ng-if="topics.length !== 0" ng-init="loadTopics()">
     <thead>
     <tr>
         <th>Name</th>
