@@ -12,15 +12,15 @@ public final class TopicInfo {
     private final String name;
     private final long messageCount;
     private final long messagesAdded;
-    private final int subscribtionCount;
-    private List<SubscriptionInfo> subscriptionInfo;
+    private final int subscriptionCount;
+    private List<SubscriptionInfo> subscriptions;
 
-    public TopicInfo(String topicName, long messageCount, long messagesAdded, int subscribtionCount, List<SubscriptionInfo> subscriptionInfo) {
+    public TopicInfo(String topicName, long messageCount, long messagesAdded, int subscriptionCount, List<SubscriptionInfo> subscriptions) {
         this.name = topicName;
         this.messageCount = messageCount;
         this.messagesAdded = messagesAdded;
-        this.subscribtionCount = subscribtionCount;
-        this.subscriptionInfo = subscriptionInfo;
+        this.subscriptionCount = subscriptionCount;
+        this.subscriptions = subscriptions;
     }
 
     public String getName() {
@@ -36,10 +36,10 @@ public final class TopicInfo {
     }
 
     public int getSubscribtionCount() {
-        return subscribtionCount;
+        return subscriptionCount;
     }
 
-    public List<SubscriptionInfo> getSubscriptionInfo() {
-        return subscriptionInfo;
+    public List<SubscriptionInfo> getSubscriptions() {
+        return subscriptions;
     }
 }

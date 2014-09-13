@@ -37,9 +37,9 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">qMon</a>
                 </div>
-                <div ng-controller="QueueController"> <!-- TODO - refactor to service -->
+                <div> <!-- TODO - refactor to service -->
                     <ul class="nav navbar-nav">
-                        <li><a href="#/queues">Queues <span class="badge" ng-model="queues">{{queues.length}}</span></a></li>
+                        <li><a href="#/queues">Queues <span class="badge" ng-controller="QueueController">{{queues.length}}</span></a></li>
                         <li><a href="#/topics">Topics <span class="badge" ng-controller="TopicController">{{topics.length}}</span></a></li>
                     </ul>
                 </div>

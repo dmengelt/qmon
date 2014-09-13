@@ -1,4 +1,54 @@
 <div ng-init="loadTopicDetails()">
-<h4>{{topicName}}</h4>
-        <pre>{{topicDetails | json}}</pre>
+<h3>{{topicName}}</h3>
+
+<div class="alert alert-warning" role="alert" ng-hide="topicDetail.name !== undefined">Topic {{topicName}} not found!</div>
+<table class="table table-hover" ng-show="topicDetail.name !== undefined">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Message count</th>
+        <th>Messages Added</th>
+        <th>Subscription count</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{topicDetail.name}}</td>
+        <td>{{topicDetail.messageCount}}</td>
+        <td>{{topicDetail.messagesAdded}}</td>
+        <td>{{topicDetail.subscribtionCount}}</td>
+    </tr>
+    </tbody>
+</table>
+
+<div ng-show="topicDetail.subscribtionCount > 0">
+<h4>Subscriptions</h4>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Queue Name</th>
+            <th>Client ID</th>
+            <th>Name</th>
+            <th>Durable</th>
+            <th>Selector</th>
+            <th>Message count</th>
+            <th>Delivering count</th>
+            <th allign="right">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat='subscription in topicDetail.subscriptions'>
+            <td>{{subscription.queueName}}</td>
+            <td>{{subscription.clientID}}</td>
+            <td>{{subscription.name}}</td>
+            <td>{{subscription.durable}}</td>
+            <td>{{subscription.selector}}</td>
+            <td>{{subscription.messageCount}}</td>
+            <td>{{subscription.deliveringCount}}</td>
+            <td align="right">
+                <button type="button" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
