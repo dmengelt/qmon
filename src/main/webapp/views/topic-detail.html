@@ -38,9 +38,9 @@
         </thead>
         <tbody>
         <tr ng-repeat='subscription in topicDetail.subscriptions'>
-            <td>{{subscription.queueName}}</td>
-            <td>{{subscription.clientID}}</td>
-            <td>{{subscription.name}}</td>
+            <td><p class="trim-info">{{subscription.queueName}}</p></td>
+            <td><p class="trim-info">{{subscription.clientID}}</p></td>
+            <td><p class="trim-info">{{subscription.name}}</p></td>
             <td>{{subscription.durable}}</td>
             <td>{{subscription.selector}}</td>
             <td>{{subscription.messageCount}}</td>
