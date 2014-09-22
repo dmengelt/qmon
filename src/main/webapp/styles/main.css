@@ -38,5 +38,11 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
     line-height: 15px;
+}
+
+.toast-approved {
+    top: 12px;
+    left: 50%;
+    margin-left: -470px;
 
 }

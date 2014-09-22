@@ -14,4 +14,13 @@ angular.module('hornetqMonitorApp')
             });
 
         };
+
+        $scope.deleteSubscription = function(topicName, subscriptionName) {
+            $http.delete('/monitor/topics/' + topicName + '/' + subscriptionName).success(function(data, status, headers, config) {
+                $scope.topicDetail = data;
+            }).error(function(data, status, headers, config) {
+                console.log('An error occured while trying to get the topic details for topic: ' + $scope.topicName);
+            });
+
+        };
     });

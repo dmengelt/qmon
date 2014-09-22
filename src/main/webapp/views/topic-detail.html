@@ -30,7 +30,6 @@
             <th>Client ID</th>
             <th>Name</th>
             <th>Durable</th>
-            <th>Selector</th>
             <th>Message count</th>
             <th>Delivering count</th>
             <th allign="right">&nbsp;</th>
@@ -42,11 +41,10 @@
             <td><p class="trim-info">{{subscription.clientID}}</p></td>
             <td><p class="trim-info">{{subscription.name}}</p></td>
             <td>{{subscription.durable}}</td>
-            <td>{{subscription.selector}}</td>
             <td>{{subscription.messageCount}}</td>
             <td>{{subscription.deliveringCount}}</td>
             <td align="right">
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" ng-click="deleteSubscription(topicDetail.name,subscription.queueName)" class="btn btn-danger" ng-show="!subscription.durable">Delete</button>
             </td>
         </tr>
         </tbody>
