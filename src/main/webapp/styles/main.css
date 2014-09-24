@@ -46,3 +46,13 @@ body {
     margin-left: -470px;
 
 }
+
+.subscription-table td {
+    padding: 5px;
+}
+
+.subscription-seperator {
+    padding: 0px;
+    margin: 0px;
+}
+

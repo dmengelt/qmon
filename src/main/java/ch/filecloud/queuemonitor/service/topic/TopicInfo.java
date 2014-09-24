@@ -35,7 +35,7 @@ public final class TopicInfo {
         return messagesAdded;
     }
 
-    public int getSubscribtionCount() {
+    public int getSubscriptionCount() {
         return subscriptionCount;
     }
 
