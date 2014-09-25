@@ -17,6 +17,9 @@ import javax.inject.Inject;
 @RequestMapping("/monitor/topics")
 public class TopicMonitorController {
 
+    private static final String TOPIC_NAME = "topicName";
+    private static final String SUBSCRIPTION_NAME = "subscriptionName";
+
     @Inject
     private TopicControlService topicControlService;
 
@@ -32,14 +35,14 @@ public class TopicMonitorController {
         return topicControlService.getTopic(topicName);
     }
 
-    @RequestMapping(value = "/{topicName}/{subscribtionName}", method = RequestMethod.DELETE, produces = "application/json")
+    @RequestMapping(value = "/{topicName}/{subscriptionName}", method = RequestMethod.DELETE, produces = "application/json")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<String> dropDurableSubscription(@PathVariable("topicName") String topicName, @PathVariable("subscribtionName") String subscribtionName) {
+    public ResponseEntity<String> dropDurableSubscription(@PathVariable(TOPIC_NAME) String topicName, @PathVariable(SUBSCRIPTION_NAME) String subscriptionName) {
         try {
-            topicControlService.dropDurableSubscription(topicName, subscribtionName);
+            topicControlService.dropDurableSubscription(topicName, subscriptionName);
             return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
         } catch (TopicSubscriptionNotFoundException e) {
-            return new ResponseEntity<String>("Unable to find subscription '" + subscribtionName + "' for topic '" + topicName + "'",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("Unable to find subscription '" + subscriptionName + "' for topic '" + topicName + "'",HttpStatus.NOT_FOUND);
         }
     }
 

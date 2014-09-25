@@ -36,35 +36,36 @@ public class TopicControlService extends ControlService {
         return createTopicInfo(topicName);
     }
 
-    public void dropDurableSubscription(String topicName, String subscriptionName) throws TopicSubscriptionNotFoundException {
+    public void dropDurableSubscription(String topicName, String subscriptionName) {
         TopicControl topicControl = getTopicControl(topicName);
 
         List<SubscriptionInfo> subscriptions = getSubscriptionInfo(topicName, topicControl);
 
-        if(subscriptions != null && subscriptions.size() > 0) {
-            for(SubscriptionInfo subscription : subscriptions) {
-                if(subscription.getQueueName().equals(subscriptionName)) {
-                    try {
-                        topicControl.dropDurableSubscription(subscription.getClientID(), subscription.getName());
-                    } catch (Exception e) {
-                        LOGGER.error("Error occurred while trying to delete the subscription " + subscriptionName + " for topic " + topicName, e);
-                        throw new QmonConnectionException(e);
-                    }
+        if (subscriptions == null || subscriptions.size() == 0) {
+            throw new TopicSubscriptionNotFoundException();
+        }
+        
+        for (SubscriptionInfo subscription : subscriptions) {
+            if (subscription.getQueueName().equals(subscriptionName)) {
+                try {
+                    topicControl.dropDurableSubscription(subscription.getClientID(), subscription.getName());
+                } catch (Exception e) {
+                    LOGGER.error("Error occurred while trying to delete the subscription " + subscriptionName + " for topic " + topicName, e);
+                    throw new QmonConnectionException(e);
                 }
             }
         }
 
-        throw new TopicSubscriptionNotFoundException();
     }
 
     private TopicInfo createTopicInfo(String topicName) {
         try {
             TopicControl topicControl = getTopicControl(topicName);
             return new TopicInfo(topicName,
-                                 topicControl.getMessageCount(),
-                                 topicControl.getMessagesAdded(),
-                                 topicControl.getSubscriptionCount(),
-                                 getSubscriptionInfo(topicName, topicControl));
+                    topicControl.getMessageCount(),
+                    topicControl.getMessagesAdded(),
+                    topicControl.getSubscriptionCount(),
+                    getSubscriptionInfo(topicName, topicControl));
         } catch (Exception e) {
             throw new QmonConnectionException(e);
         }

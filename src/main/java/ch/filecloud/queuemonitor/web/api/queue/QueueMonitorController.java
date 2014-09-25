@@ -17,6 +17,8 @@ import javax.inject.Inject;
 @RequestMapping("/monitor/queues")
 public class QueueMonitorController {
 
+    private static final String QUEUE_NAME = "queueName";
+
     @Inject
     private QueueControlService queueControlService;
 
@@ -28,7 +30,7 @@ public class QueueMonitorController {
 
     @RequestMapping(value = "/{queueName}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public QueueInfo getMessageCount(@PathVariable("queueName") String queueName) {
+    public QueueInfo getMessageCount(@PathVariable(QUEUE_NAME) String queueName) {
         return queueControlService.getQueue(queueName);
     }
 }
