@@ -2,6 +2,7 @@ package ch.filecloud.queuemonitor.service.topic;
 
 import ch.filecloud.queuemonitor.service.ControlService;
 import ch.filecloud.queuemonitor.service.exception.QmonConnectionException;
+import ch.filecloud.queuemonitor.service.exception.TopicSubscriptionNotDurableException;
 import ch.filecloud.queuemonitor.service.exception.TopicSubscriptionNotFoundException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -47,6 +48,11 @@ public class TopicControlService extends ControlService {
         
         for (SubscriptionInfo subscription : subscriptions) {
             if (subscription.getQueueName().equals(subscriptionName)) {
+
+                if(!subscription.isDurable()) {
+                    throw new TopicSubscriptionNotDurableException();
+                }
+
                 try {
                     topicControl.dropDurableSubscription(subscription.getClientID(), subscription.getName());
                 } catch (Exception e) {
@@ -73,6 +79,7 @@ public class TopicControlService extends ControlService {
 
     private List<SubscriptionInfo> getSubscriptionInfo(String topicName, TopicControl topicControl) {
         try {
+            // listDurableSubscriptionsAsJSON()
             return Arrays.asList(SubscriptionInfo.from(topicControl.listAllSubscriptionsAsJSON()));
         } catch (Exception e) {
             LOGGER.error("Error occurred while trying to get the subscriptions for topic " + topicName, e);

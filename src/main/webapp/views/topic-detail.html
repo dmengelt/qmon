@@ -27,11 +27,11 @@
         <tbody ng-repeat='subscription in topicDetail.subscriptions'>
             <tr>
                 <td>ID:</td>
-                <td>{{subscription.clientID}}</td>
+                <td>{{subscription.clientID | unknown}}</td>
             </tr>
             <tr>
                 <td>Name:</td>
-                <td>{{subscription.name}}</td>
+                <td>{{subscription.name | unknown}}</td>
             </tr>
             <tr>
                 <td>Info:</td>
@@ -41,7 +41,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" align="left"><button type="button" ng-click="deleteSubscription(topicDetail.name,subscription.queueName)" class="btn btn-danger" ng-show="subscription.durable">Delete</button></td>
+                <td colspan="2" align="left"><button type="button" ng-click="deleteSubscription(topicDetail.name,subscription.queueName)" class="btn btn-danger" ng-show="!subscription.durable">Delete</button></td>
             </tr>
             <tr>
                 <td colspan="2"><hr class="subscription-seperator"></td>

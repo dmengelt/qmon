@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hornetqMonitorApp')
-    .controller('TopicDetailController', function ($rootScope, $scope, $http, $routeParams) {
+    .controller('TopicDetailController', function ($rootScope, $scope, $http, $routeParams, $filter) {
         $scope.topicName = $routeParams.topicName;
 
         $scope.topicDetail = [];
