@@ -32,7 +32,7 @@ body {
 }
 
 .trim-info {
-    max-width: 200px;
+    max-width: 500px;
     display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
