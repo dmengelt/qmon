@@ -15,9 +15,11 @@ angular.module('hornetqMonitorApp')
 
         };
 
-        $scope.deleteSubscription = function(topicName, subscriptionName) {
+        $scope.deleteSubscription = function(topicName, subscriptionName, index) {
             $http.delete('/monitor/topics/' + topicName + '/' + subscriptionName).success(function(data, status, headers, config) {
-                $scope.topicDetail = data;
+
+                $scope.topicDetail.subscriptions.splice(index, 1);
+
             }).error(function(data, status, headers, config) {
                 console.log('An error occured while trying to get the topic details for topic: ' + $scope.topicName);
             });

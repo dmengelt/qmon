@@ -35,7 +35,7 @@ public class TopicMonitorController {
         return topicControlService.getTopic(topicName);
     }
 
-    @RequestMapping(value = "/{topicName}/{subscriptionName}", method = RequestMethod.DELETE, produces = "application/json")
+    @RequestMapping(value = "/{topicName}/{subscriptionName:.+}", method = RequestMethod.DELETE, produces = "application/json")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<String> dropDurableSubscription(@PathVariable(TOPIC_NAME) String topicName, @PathVariable(SUBSCRIPTION_NAME) String subscriptionName) {
         try {

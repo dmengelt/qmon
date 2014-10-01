@@ -47,7 +47,7 @@ public class TopicControlService extends ControlService {
         }
         
         for (SubscriptionInfo subscription : subscriptions) {
-            if (subscription.getQueueName().equals(subscriptionName)) {
+            if (subscription.getName().equals(subscriptionName)) {
 
                 if(!subscription.isDurable()) {
                     throw new TopicSubscriptionNotDurableException();
