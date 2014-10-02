@@ -1,5 +1,6 @@
 package ch.filecloud.queuemonitor;
 
+import ch.filecloud.queuemonitor.common.QmonEnvironmentConfiguration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.apache.commons.logging.Log;
@@ -31,8 +32,11 @@ public class App {
     private final String REMOTE_JMX_URL_SUFFIX = "/jmxrmi";
     private final String REMOTE_JMX_URL_DEFAULT = "localhost:9005";
 
-    @Value("#{ systemProperties['" + JMX_REMOTE_URL_PROPERTY +"'] }")
+    @Value("#{ systemProperties['" + QMON_REMOTE_JMX_URL_PROPERTY +"'] }")
     private String remoteJmxUrl;
+
+    @Value("#{ systemProperties['" + QMON_CONFIG +"'] }")
+    private String qmonConfig;
 
     @Bean
     protected MBeanServerConnectionFactoryBean getMBeanServerConnectionFactoryBean() throws MalformedURLException {
@@ -46,6 +50,13 @@ public class App {
 
         mBeanServerConnectionFactoryBean.setServiceUrl(REMOTE_JMX_URL_PREFIX + remoteJmxUrl + REMOTE_JMX_URL_SUFFIX);
         return mBeanServerConnectionFactoryBean;
+    }
+
+    @Bean
+    protected QmonEnvironmentConfiguration getQmonEnvironmentConfiguration() {
+        QmonEnvironmentConfiguration qmonEnvironmentConfiguration = new QmonEnvironmentConfiguration();
+        qmonEnvironmentConfiguration.parseConfiguration(qmonConfig);
+        return qmonEnvironmentConfiguration;
     }
 
     @Bean

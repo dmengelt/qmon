@@ -5,6 +5,7 @@ package ch.filecloud.queuemonitor.common;
  */
 public final class Consts {
 
-    public static final String JMX_REMOTE_URL_PROPERTY = "qmon.remote.jmx.url";
+    public static final String QMON_REMOTE_JMX_URL_PROPERTY = "qmon.remote.jmx.url";
+    public static final String QMON_CONFIG = "qmon.config";
 
 }

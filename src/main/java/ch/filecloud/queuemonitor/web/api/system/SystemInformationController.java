@@ -26,7 +26,7 @@ public class SystemInformationController {
     @RequestMapping(value = "/environment", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public String getEnvironmentInformation() {
-        String jmxRemoteUrl = environment.getProperty(JMX_REMOTE_URL_PROPERTY);
+        String jmxRemoteUrl = environment.getProperty(QMON_REMOTE_JMX_URL_PROPERTY);
 
         if(jmxRemoteUrl != null && StringUtils.hasText(jmxRemoteUrl)) {
             return jmxRemoteUrl;
