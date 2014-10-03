@@ -5,19 +5,24 @@ package ch.filecloud.queuemonitor.common;
  */
 public class QmonEnvironment {
 
+    public String key;
     public String hostname;
-    public int port;
-    public String label;
+    public int jmxPort;
+    public int order;
 
     public String getHostname() {
         return hostname;
     }
 
-    public int getPort() {
-        return port;
+    public int getJmxPort() {
+        return jmxPort;
     }
 
-    public String getLabel() {
-        return label;
+    public String getKey() {
+        return key;
+    }
+
+    public int getOrder() {
+        return order;
     }
 }

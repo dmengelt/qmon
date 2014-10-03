@@ -16,6 +16,7 @@ import org.springframework.jmx.support.MBeanServerConnectionFactoryBean;
 
 import static ch.filecloud.queuemonitor.common.Consts.*;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 /**
@@ -48,15 +49,19 @@ public class App {
 
         LOGGER.info("Using JMX URL " + remoteJmxUrl);
 
+        //QmonEnvironmentConfiguration qmonEnvironmentConfiguration = getQmonEnvironmentConfiguration();
+
         mBeanServerConnectionFactoryBean.setServiceUrl(REMOTE_JMX_URL_PREFIX + remoteJmxUrl + REMOTE_JMX_URL_SUFFIX);
         return mBeanServerConnectionFactoryBean;
     }
 
     @Bean
     protected QmonEnvironmentConfiguration getQmonEnvironmentConfiguration() {
-        QmonEnvironmentConfiguration qmonEnvironmentConfiguration = new QmonEnvironmentConfiguration();
-        qmonEnvironmentConfiguration.parseConfiguration(qmonConfig);
-        return qmonEnvironmentConfiguration;
+        try {
+            return QmonEnvironmentConfiguration.create(qmonConfig);
+        } catch (IOException e) {
+           throw new IllegalArgumentException("Unable to parse config JSON", e);
+        }
     }
 
     @Bean

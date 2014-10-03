@@ -3,6 +3,7 @@
     "environments":
      [
             {
+                "key": "localhost",
                 "hostname":"localhost",
                 "jmxPort":"9005",
                 "order": 1,
