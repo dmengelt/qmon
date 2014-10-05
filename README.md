@@ -1,4 +1,7 @@
-#### Installation & Usage
+# qMon - [![Build Status](https://travis-ci.org/domi55/qmon.svg?branch=master)](https://travis-ci.org/domi55/qmon)
+Manage your [HornetQ](http://hornetq.jboss.org/) enabled Java backend.
+qMon is a simple [Spring Boot](http://projects.spring.io/spring-boot/) app to control your HornetQ queues and topics through JMX.
+## Installation & Usage
 1) Install [node.js](http://nodejs.org/download/), [Maven](http://maven.apache.org/download.cgi) and [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
 2) Install [bower](http://bower.io/) and the used bower packages:
