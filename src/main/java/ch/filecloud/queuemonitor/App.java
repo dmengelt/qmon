@@ -1,5 +1,6 @@
 package ch.filecloud.queuemonitor;
 
+import ch.filecloud.queuemonitor.common.QmonEnvironment;
 import ch.filecloud.queuemonitor.common.QmonEnvironmentConfiguration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -13,8 +14,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jmx.support.MBeanServerConnectionFactoryBean;
-
-import static ch.filecloud.queuemonitor.common.Consts.*;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -31,10 +30,7 @@ public class App {
 
     private final String REMOTE_JMX_URL_PREFIX = "service:jmx:rmi://localhost/jndi/rmi://";
     private final String REMOTE_JMX_URL_SUFFIX = "/jmxrmi";
-    private final String REMOTE_JMX_URL_DEFAULT = "localhost:9005";
-
-    @Value("#{ systemProperties['" + QMON_REMOTE_JMX_URL_PROPERTY +"'] }")
-    private String remoteJmxUrl;
+    private static final String QMON_CONFIG = "qmon.config";
 
     @Value("#{ systemProperties['" + QMON_CONFIG +"'] }")
     private String qmonConfig;
@@ -43,15 +39,18 @@ public class App {
     protected MBeanServerConnectionFactoryBean getMBeanServerConnectionFactoryBean() throws MalformedURLException {
         MBeanServerConnectionFactoryBean mBeanServerConnectionFactoryBean = new MBeanServerConnectionFactoryBean();
 
-        if(remoteJmxUrl == null) {
-            remoteJmxUrl = REMOTE_JMX_URL_DEFAULT;
-        }
+        QmonEnvironmentConfiguration qmonEnvironmentConfiguration = getQmonEnvironmentConfiguration();
+        QmonEnvironment qmonEnvironment = qmonEnvironmentConfiguration.getFirst();
+
+        StringBuilder remoteJmxUrl = new StringBuilder(REMOTE_JMX_URL_PREFIX);
+        remoteJmxUrl.append(qmonEnvironment.getHostname());
+        remoteJmxUrl.append(":");
+        remoteJmxUrl.append(qmonEnvironment.getJmxPort());
+        remoteJmxUrl.append(REMOTE_JMX_URL_SUFFIX);
 
         LOGGER.info("Using JMX URL " + remoteJmxUrl);
 
-        //QmonEnvironmentConfiguration qmonEnvironmentConfiguration = getQmonEnvironmentConfiguration();
-
-        mBeanServerConnectionFactoryBean.setServiceUrl(REMOTE_JMX_URL_PREFIX + remoteJmxUrl + REMOTE_JMX_URL_SUFFIX);
+        mBeanServerConnectionFactoryBean.setServiceUrl(remoteJmxUrl.toString());
         return mBeanServerConnectionFactoryBean;
     }
 

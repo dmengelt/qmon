@@ -3,7 +3,8 @@
 var hornetqMonitorApp = angular.module('hornetqMonitorApp', [
     'ngCookies',
     'ngResource',
-    'ngRoute'
+    'ngRoute',
+    'nya.bootstrap.select'
 ]);
 
 hornetqMonitorApp.config(['$routeProvider',

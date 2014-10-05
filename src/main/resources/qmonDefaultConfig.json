@@ -1,14 +1,20 @@
 {
-
     "environments":
      [
+            {
+                "key": "mytesthost",
+                "hostname":"localhost",
+                "jmxPort":"9006",
+                "order": 2,
+                "label":"localtest"
+
+            },
             {
                 "key": "localhost",
                 "hostname":"localhost",
                 "jmxPort":"9005",
                 "order": 1,
                 "label":"local"
-
             }
      ]
 }

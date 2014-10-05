@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,6 +23,18 @@ public class QmonEnvironmentConfiguration {
     private static final String QMON_DEFAULT_CONFIG_JSON = "qmonDefaultConfig.json";
 
     private List<QmonEnvironment> environments;
+
+    public QmonEnvironment getFirst() {
+        return environments.get(0);
+    }
+
+    public List<QmonEnvironment> getAll() {
+        return environments;
+    }
+
+    private void sort() {
+        Collections.sort(environments);
+    }
 
     public static QmonEnvironmentConfiguration create(String filename) throws IOException {
         if (filename != null && !filename.isEmpty()) {
@@ -46,7 +59,9 @@ public class QmonEnvironmentConfiguration {
     private static QmonEnvironmentConfiguration createInternal(String configJson) {
         Gson gson = new Gson();
         QmonEnvironmentConfiguration qmonEnvironmentConfiguration = gson.fromJson(configJson, QmonEnvironmentConfiguration.class);
+        qmonEnvironmentConfiguration.sort();
         return qmonEnvironmentConfiguration;
     }
+
 
 }
