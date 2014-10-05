@@ -2,11 +2,12 @@
     "environments":
      [
             {
-                "key": "mytesthost",
+                "key": "localhost2",
                 "hostname":"localhost",
                 "jmxPort":"9006",
                 "order": 2,
-                "label":"localtest"
+                "label":"dev-low-prio",
+                "stage": "DEV"
 
             },
             {
@@ -14,7 +15,16 @@
                 "hostname":"localhost",
                 "jmxPort":"9005",
                 "order": 1,
-                "label":"local"
-            }
+                "label":"dev-high-prio",
+                "stage": "DEV"
+            },
+             {
+                 "key": "localhost",
+                 "hostname":"prod-host",
+                 "jmxPort":"9005",
+                 "order": 3,
+                 "label":"local",
+                 "stage": "PROD"
+             }
      ]
 }

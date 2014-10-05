@@ -9,6 +9,8 @@ public class QmonEnvironment implements Comparable<QmonEnvironment> {
     public String hostname;
     public int jmxPort;
     public int order;
+    public String label;
+    public String stage;
 
     public String getHostname() {
         return hostname;
@@ -57,6 +59,8 @@ public class QmonEnvironment implements Comparable<QmonEnvironment> {
         if (order != that.order) return false;
         if (hostname != null ? !hostname.equals(that.hostname) : that.hostname != null) return false;
         if (key != null ? !key.equals(that.key) : that.key != null) return false;
+        if (label != null ? !label.equals(that.label) : that.label != null) return false;
+        if (stage != null ? !stage.equals(that.stage) : that.stage != null) return false;
 
         return true;
     }
@@ -67,6 +71,8 @@ public class QmonEnvironment implements Comparable<QmonEnvironment> {
         result = 31 * result + (hostname != null ? hostname.hashCode() : 0);
         result = 31 * result + jmxPort;
         result = 31 * result + order;
+        result = 31 * result + (label != null ? label.hashCode() : 0);
+        result = 31 * result + (stage != null ? stage.hashCode() : 0);
         return result;
     }
 
@@ -77,6 +83,8 @@ public class QmonEnvironment implements Comparable<QmonEnvironment> {
         sb.append(", hostname='").append(hostname).append('\'');
         sb.append(", jmxPort=").append(jmxPort);
         sb.append(", order=").append(order);
+        sb.append(", label='").append(label).append('\'');
+        sb.append(", stage='").append(stage).append('\'');
         sb.append('}');
         return sb.toString();
     }
