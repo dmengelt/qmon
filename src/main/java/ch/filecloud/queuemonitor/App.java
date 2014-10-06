@@ -28,8 +28,6 @@ public class App {
 
     private static Log LOGGER = LogFactory.getLog(App.class);
 
-    private final String REMOTE_JMX_URL_PREFIX = "service:jmx:rmi://localhost/jndi/rmi://";
-    private final String REMOTE_JMX_URL_SUFFIX = "/jmxrmi";
     private static final String QMON_CONFIG = "qmon.config";
 
     @Value("#{ systemProperties['" + QMON_CONFIG +"'] }")
@@ -42,15 +40,10 @@ public class App {
         QmonEnvironmentConfiguration qmonEnvironmentConfiguration = getQmonEnvironmentConfiguration();
         QmonEnvironment qmonEnvironment = qmonEnvironmentConfiguration.getFirst();
 
-        StringBuilder remoteJmxUrl = new StringBuilder(REMOTE_JMX_URL_PREFIX);
-        remoteJmxUrl.append(qmonEnvironment.getHostname());
-        remoteJmxUrl.append(":");
-        remoteJmxUrl.append(qmonEnvironment.getJmxPort());
-        remoteJmxUrl.append(REMOTE_JMX_URL_SUFFIX);
+        LOGGER.info("Using JMX URL " + qmonEnvironment.getJmxRemoteUrl());
 
-        LOGGER.info("Using JMX URL " + remoteJmxUrl);
-
-        mBeanServerConnectionFactoryBean.setServiceUrl(remoteJmxUrl.toString());
+        mBeanServerConnectionFactoryBean.setServiceUrl(qmonEnvironment.getJmxRemoteUrl());
+        mBeanServerConnectionFactoryBean.setConnectOnStartup(false);
         return mBeanServerConnectionFactoryBean;
     }
 

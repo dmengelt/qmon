@@ -28,6 +28,16 @@ public class QmonEnvironmentConfiguration {
         return environments.get(0);
     }
 
+    public QmonEnvironment get(String environmentName) {
+        for(QmonEnvironment qmonEnvironment : environments) {
+            if(qmonEnvironment.getName().equals(environmentName)) {
+                return qmonEnvironment;
+            }
+        }
+
+        return getFirst();
+    }
+
     public List<QmonEnvironment> getAll() {
         return environments;
     }

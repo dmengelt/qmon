@@ -1,10 +1,9 @@
 package ch.filecloud.queuemonitor.web.api.system;
 
 import ch.filecloud.queuemonitor.service.system.SystemInformationService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 
@@ -22,5 +21,12 @@ public class SystemInformationController {
     @ResponseBody
     public SystemInformationResponseDTO getEnvironmentInformation() {
         return new SystemInformationResponseDTO(systemInformationService.getEnvironments());
+    }
+
+    @RequestMapping(value = "/environments", method = RequestMethod.PUT, produces = "application/json")
+    @ResponseBody
+    @ResponseStatus( HttpStatus.OK )
+    public void updateCurrentEnvironment(@RequestBody EnvironmentUpdateRequestDTO environmentUpdateRequestDTO) {
+        systemInformationService.setCurrentEnvironment(environmentUpdateRequestDTO.getEnvironmentName());
     }
 }

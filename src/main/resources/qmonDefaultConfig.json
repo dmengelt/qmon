@@ -2,29 +2,29 @@
     "environments":
      [
             {
-                "key": "localhost2",
+                "name": "localhost-dev2",
                 "hostname":"localhost",
-                "jmxPort":"9006",
+                "jmxPort":"9010",
                 "order": 2,
                 "label":"dev-low-prio",
                 "stage": "DEV"
 
             },
             {
-                "key": "localhost",
+                "name": "localhost-dev1",
                 "hostname":"localhost",
                 "jmxPort":"9005",
                 "order": 1,
                 "label":"dev-high-prio",
                 "stage": "DEV"
             },
-             {
-                 "key": "localhost",
-                 "hostname":"prod-host",
-                 "jmxPort":"9005",
-                 "order": 3,
-                 "label":"local",
-                 "stage": "PROD"
-             }
+            {
+                "name": "localhost-prod",
+                "hostname":"localhost",
+                "jmxPort":"9005",
+                "order": 3,
+                "label":"local",
+                "stage": "PROD"
+            }
      ]
 }
