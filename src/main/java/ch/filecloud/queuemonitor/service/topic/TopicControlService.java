@@ -90,7 +90,7 @@ public class TopicControlService extends ControlService {
     private TopicControl getTopicControl(String topicName) {
         try {
             ObjectName objectName = ObjectNameBuilder.DEFAULT.getJMSTopicObjectName(topicName);
-            return MBeanServerInvocationHandler.newProxyInstance(mBeanServerConnectionFactoryBean.getObject(), objectName, TopicControl.class, false);
+            return MBeanServerInvocationHandler.newProxyInstance(jmxConnectionClient.get(), objectName, TopicControl.class, false);
         } catch (Exception e) {
             throw new IllegalArgumentException("Object name not found!", e);
         }

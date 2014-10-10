@@ -1,6 +1,5 @@
 package ch.filecloud.queuemonitor;
 
-import ch.filecloud.queuemonitor.common.QmonEnvironment;
 import ch.filecloud.queuemonitor.common.QmonEnvironmentConfiguration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -13,10 +12,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.jmx.support.MBeanServerConnectionFactoryBean;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 /**
  * Created by domi on 7/21/14.
@@ -32,20 +30,6 @@ public class App {
 
     @Value("#{ systemProperties['" + QMON_CONFIG +"'] }")
     private String qmonConfig;
-
-    @Bean
-    protected MBeanServerConnectionFactoryBean getMBeanServerConnectionFactoryBean() throws MalformedURLException {
-        MBeanServerConnectionFactoryBean mBeanServerConnectionFactoryBean = new MBeanServerConnectionFactoryBean();
-
-        QmonEnvironmentConfiguration qmonEnvironmentConfiguration = getQmonEnvironmentConfiguration();
-        QmonEnvironment qmonEnvironment = qmonEnvironmentConfiguration.getFirst();
-
-        LOGGER.info("Using JMX URL " + qmonEnvironment.getJmxRemoteUrl());
-
-        mBeanServerConnectionFactoryBean.setServiceUrl(qmonEnvironment.getJmxRemoteUrl());
-        mBeanServerConnectionFactoryBean.setConnectOnStartup(false);
-        return mBeanServerConnectionFactoryBean;
-    }
 
     @Bean
     protected QmonEnvironmentConfiguration getQmonEnvironmentConfiguration() {
@@ -68,6 +52,11 @@ public class App {
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
         mappingJackson2HttpMessageConverter.setObjectMapper(getObjectMapper());
         return mappingJackson2HttpMessageConverter;
+    }
+
+    @PostConstruct
+    public void postConstruct() {
+
     }
 
     public static void main(String[] args) {

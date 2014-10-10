@@ -47,7 +47,7 @@
                 </div>
                 <div ng-controller="MainController" ng-init="getEnvironmenetInfo()">
                     <p class="navbar-text navbar-right">
-                        <select class="nya-selectpicker"  ng-model="defaultEnv" ng-options="env.label group by env.stage for env in environments"></select>
+                        <select class="nya-selectpicker" ng-model="defaultEnv" ng-change="updateEnvironment()" ng-options="env.label group by env.stage for env in environments"></select>
                     </p>
                 </div>
             </div>

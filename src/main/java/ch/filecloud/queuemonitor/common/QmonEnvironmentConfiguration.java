@@ -23,19 +23,14 @@ public class QmonEnvironmentConfiguration {
     private static final String QMON_DEFAULT_CONFIG_JSON = "qmonDefaultConfig.json";
 
     private List<QmonEnvironment> environments;
+    private QmonEnvironment currentEnvironment;
 
-    public QmonEnvironment getFirst() {
-        return environments.get(0);
+    public QmonEnvironment getCurrent() {
+        return currentEnvironment;
     }
 
-    public QmonEnvironment get(String environmentName) {
-        for(QmonEnvironment qmonEnvironment : environments) {
-            if(qmonEnvironment.getName().equals(environmentName)) {
-                return qmonEnvironment;
-            }
-        }
-
-        return getFirst();
+    public void setCurrent(String environmentName) {
+        currentEnvironment = get(environmentName);
     }
 
     public List<QmonEnvironment> getAll() {
@@ -44,6 +39,17 @@ public class QmonEnvironmentConfiguration {
 
     private void sort() {
         Collections.sort(environments);
+        currentEnvironment = environments.get(0);
+    }
+
+    private QmonEnvironment get(String environmentName) {
+        for(QmonEnvironment qmonEnvironment : environments) {
+            if(qmonEnvironment.getName().equals(environmentName)) {
+                return qmonEnvironment;
+            }
+        }
+
+        return getCurrent();
     }
 
     public static QmonEnvironmentConfiguration create(String filename) throws IOException {
@@ -72,6 +78,4 @@ public class QmonEnvironmentConfiguration {
         qmonEnvironmentConfiguration.sort();
         return qmonEnvironmentConfiguration;
     }
-
-
 }
