@@ -1,13 +1,14 @@
 <div ng-init="loadQueues()">
     <h4>Queues</h4>
     <div class="alert alert-warning" role="alert" ng-hide="queues.length !== 0">No active queues found!</div>
-    <table class="table table-hover" ng-show="queues.length !== 0">
+    <table class="table table-striped" ng-show="queues.length !== 0">
         <thead>
         <tr>
             <th>Name</th>
             <th>Message count</th>
             <th>Messages Added</th>
             <th>Consumer count</th>
+            <!--<th>&nbsp;</th>-->
         </tr>
         </thead>
         <tbody>
@@ -16,6 +17,9 @@
             <td>{{queue.messageCount}}</td>
             <td>{{queue.messagesAdded}}</td>
             <td>{{queue.consumerCount}}</td>
+            <!--<td align="right">-->
+                <!--<button type="button" class="btn btn-danger" alt="asfd"><span class="glyphicon glyphicon-trash"></span></button>-->
+            <!--</td>-->
         </tr>
         </tbody>
     </table>

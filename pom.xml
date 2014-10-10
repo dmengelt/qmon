@@ -7,7 +7,7 @@
 
     <groupId>ch.filecloud</groupId>
     <artifactId>ch.filecloud.queue-monitor</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
