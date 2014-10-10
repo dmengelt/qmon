@@ -16,7 +16,7 @@ $ bower install
 3) Build and Run
 ```bash
 $ mvn clean package
-$ java -Dqmon.config=/absolute/path/to/config.json -Dserver.port=<server-port> -jar target/ch.filecloud.queue-monitor-0.0.1-SNAPSHOT.jar
+$ java -Dqmon.config=/absolute/path/to/config.json -Dserver.port=<server-port> -jar target/ch.filecloud.queue-monitor-<version>.jar
 ```
 The application will be available on http://localhost:\<server-port\>
 
