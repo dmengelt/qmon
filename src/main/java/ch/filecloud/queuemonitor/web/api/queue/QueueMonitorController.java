@@ -34,7 +34,7 @@ public class QueueMonitorController {
         return queueControlService.getQueue(queueName);
     }
 
-    @RequestMapping(value = "/{queueName}/clear", method = RequestMethod.PUT, produces = "application/json")
+    @RequestMapping(value = "/{queueName}/messages/clear", method = RequestMethod.PUT, produces = "application/json")
     @ResponseStatus( HttpStatus.OK )
     public void clearMessages(@PathVariable(QUEUE_NAME) String queueName) {
         queueControlService.clearMessages(queueName);
