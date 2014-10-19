@@ -2,11 +2,11 @@ package ch.filecloud.queuemonitor.web.api.queue;
 
 import ch.filecloud.queuemonitor.service.queue.QueueInfo;
 import ch.filecloud.queuemonitor.service.queue.QueueControlService;
+import ch.filecloud.queuemonitor.web.api.system.EnvironmentUpdateRequestDTO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 
@@ -33,4 +33,11 @@ public class QueueMonitorController {
     public QueueInfo getMessageCount(@PathVariable(QUEUE_NAME) String queueName) {
         return queueControlService.getQueue(queueName);
     }
+
+    @RequestMapping(value = "/{queueName}/clear", method = RequestMethod.PUT, produces = "application/json")
+    @ResponseStatus( HttpStatus.OK )
+    public void clearMessages(@PathVariable(QUEUE_NAME) String queueName) {
+        queueControlService.clearMessages(queueName);
+    }
+
 }

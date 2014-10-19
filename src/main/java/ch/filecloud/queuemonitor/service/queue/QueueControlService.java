@@ -31,6 +31,15 @@ public class QueueControlService extends ControlService {
         return createQueueInfo(queueName);
     }
 
+    public void clearMessages(String queueName) {
+        try {
+            JMSQueueControl jmsQueueControl = getJMSQueueControl(queueName);
+            jmsQueueControl.removeMessages("*");
+        } catch (Exception e) {
+            throw new QmonConnectionException("An error occurred while trying to clear the messages for queue " + queueName, e);
+        }
+    }
+
     private JMSQueueControl getJMSQueueControl(String queueName) {
         try {
             ObjectName objectName = ObjectNameBuilder.DEFAULT.getJMSQueueObjectName(queueName);
@@ -51,5 +60,4 @@ public class QueueControlService extends ControlService {
             throw new QmonConnectionException("Error occurred during lookup of queues", e);
         }
     }
-
 }
