@@ -1,6 +1,6 @@
 package ch.filecloud.queuemonitor.web.api.topic;
 
-import ch.filecloud.queuemonitor.service.topic.TopicInfo;
+import ch.filecloud.queuemonitor.client.topic.TopicInfo;
 import ch.filecloud.queuemonitor.service.topic.TopicControlService;
 import ch.filecloud.queuemonitor.service.exception.TopicSubscriptionNotFoundException;
 import org.springframework.http.HttpStatus;

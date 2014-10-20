@@ -1,19 +1,17 @@
-package ch.filecloud.queuemonitor.service;
+package ch.filecloud.queuemonitor.client;
 
-import ch.filecloud.queuemonitor.client.JmxConnectionClient;
+import ch.filecloud.queuemonitor.client.jmx.JmxConnectionClient;
 import org.hornetq.api.core.management.ObjectNameBuilder;
 import org.hornetq.api.jms.management.JMSServerControl;
-import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 import javax.management.MBeanServerInvocationHandler;
 import javax.management.ObjectName;
 
 /**
- * Created by domi on 8/4/14.
+ * Created by domi on 10/20/14.
  */
-@Component
-public abstract class ControlService {
+public abstract class AbstractHornetQClient {
 
     @Inject
     protected JmxConnectionClient jmxConnectionClient;
@@ -26,6 +24,5 @@ public abstract class ControlService {
             throw new IllegalArgumentException("Object name not found!", e);
         }
     }
-
 
 }

@@ -13,7 +13,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 
 /**
@@ -52,11 +51,6 @@ public class App {
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
         mappingJackson2HttpMessageConverter.setObjectMapper(getObjectMapper());
         return mappingJackson2HttpMessageConverter;
-    }
-
-    @PostConstruct
-    public void postConstruct() {
-
     }
 
     public static void main(String[] args) {

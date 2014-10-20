@@ -1,4 +1,4 @@
-package ch.filecloud.queuemonitor.service.queue;
+package ch.filecloud.queuemonitor.client.queue;
 
 /**
  * Created by domi on 8/4/14.

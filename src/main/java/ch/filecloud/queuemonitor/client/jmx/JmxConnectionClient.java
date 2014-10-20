@@ -1,4 +1,4 @@
-package ch.filecloud.queuemonitor.client;
+package ch.filecloud.queuemonitor.client.jmx;
 
 import ch.filecloud.queuemonitor.common.QmonEnvironment;
 import ch.filecloud.queuemonitor.common.QmonEnvironmentConfiguration;

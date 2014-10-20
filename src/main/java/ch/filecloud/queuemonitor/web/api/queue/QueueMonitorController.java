@@ -1,10 +1,8 @@
 package ch.filecloud.queuemonitor.web.api.queue;
 
-import ch.filecloud.queuemonitor.service.queue.QueueInfo;
+import ch.filecloud.queuemonitor.client.queue.QueueInfo;
 import ch.filecloud.queuemonitor.service.queue.QueueControlService;
-import ch.filecloud.queuemonitor.web.api.system.EnvironmentUpdateRequestDTO;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
