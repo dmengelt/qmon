@@ -16,7 +16,7 @@ angular.module('hornetqMonitorApp')
         };
 
         $scope.deleteSubscription = function(topicName, subscriptionName, index) {
-            $http.delete('/monitor/topics/' + topicName + '/' + subscriptionName).success(function(data, status, headers, config) {
+            $http.delete('/monitor/topics/' + topicName + '/subscriptions/' + subscriptionName).success(function(data, status, headers, config) {
 
                 $scope.topicDetail.subscriptions.splice(index, 1);
 

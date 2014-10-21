@@ -34,7 +34,7 @@ public class HornetQQueueClient extends AbstractHornetQClient {
     public void clearMessages(String queueName) {
         try {
             JMSQueueControl jmsQueueControl = getJMSQueueControl(queueName);
-            jmsQueueControl.removeMessages("*");
+            jmsQueueControl.removeMessages("");
         } catch (Exception e) {
             throw new QmonConnectionException("An error occurred while trying to clear the messages for queue " + queueName, e);
         }

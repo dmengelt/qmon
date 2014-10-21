@@ -18,7 +18,10 @@
             <td>{{queue.messagesAdded}}</td>
             <td>{{queue.consumerCount}}</td>
             <td align="right">
-                <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                <!--<button type="button" class="btn btn-danger" ng-confirm-click="Clear all messages for queue '{{queue.queueName}}'?" ng-click="clearMessages(queue.queueName)">-->
+                <button type="button" class="btn btn-danger" ng-click="clearMessages(queue.queueName)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
             </td>
         </tr>
         </tbody>
