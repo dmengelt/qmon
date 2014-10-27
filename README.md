@@ -53,7 +53,7 @@ Make sure your HornetQ enabled server was started with the following properites:
 }
 ```
 ## Artifacts
-The latest snapshot (executable jar) build can be found here:
+The latest snapshot build (executable jar) can be found here:
 [http://artifacts.filecloud.ch/content/repositories/snapshots/ch/filecloud/ch.filecloud.queue-monitor/](http://artifacts.filecloud.ch/content/repositories/snapshots/ch/filecloud/ch.filecloud.queue-monitor/)
 
 
