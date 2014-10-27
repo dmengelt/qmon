@@ -28,7 +28,7 @@ Make sure your HornetQ enabled server was started with the following properites:
 -Dcom.sun.management.jmxremote.local.only=false
 -Dcom.sun.management.jmxremote.port=<your-jmx-port>
 ```
-## Sample config JSON (```-Dqmon.config```)
+## Sample config JSON
 ```json
 {
     "environments":
