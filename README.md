@@ -18,7 +18,7 @@ $ bower install
 $ mvn clean package
 $ java -Dqmon.config=/absolute/path/to/config.json -Dserver.port=<server-port> -jar target/ch.filecloud.queue-monitor-<version>.jar
 ```
-The application will be available on http://localhost:\<server-port\>
+The application will be available on ```http://localhost:<server-port>```
 
 Make sure your HornetQ enabled server was started with the following properites:
 
