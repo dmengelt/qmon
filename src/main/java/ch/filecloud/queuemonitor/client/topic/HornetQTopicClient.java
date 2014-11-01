@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
+/**org
  * Created by domi on 10/19/14.
  */
 @Service
@@ -55,8 +55,7 @@ public class HornetQTopicClient extends AbstractHornetQClient {
 
     public void dropDurableSubscription(String topicName, String clientID, String name) {
         try {
-            getTopicControl("asd").dropDurableSubscription(clientID, name);
-
+            getTopicControl(topicName).dropDurableSubscription(clientID, name);
         } catch (Exception e) {
             LOGGER.error("Error occurred while trying to delete the subscription " + name + " for topic " + topicName, e);
             throw new QmonConnectionException(e);

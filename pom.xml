@@ -77,4 +77,17 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <name>filecloud release repository</name>
+            <id>filecloud-releases</id>
+            <url>http://artifacts.filecloud.ch/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <name>filecloud snapshot repository</name>
+            <id>filecloud-snapshots</id>
+            <url>http://artifacts.filecloud.ch/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 </project>
