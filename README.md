@@ -18,7 +18,7 @@ $ bower install
 $ mvn clean package
 $ java -Dqmon.config=/absolute/path/to/config.json -Dserver.port=<server-port> -jar target/ch.filecloud.queue-monitor-<version>.jar
 ```
-The application will be available on http://localhost:\<server-port\>
+The application will be available on ```http://localhost:<server-port>```
 
 Make sure your HornetQ enabled server was started with the following properites:
 
@@ -52,6 +52,9 @@ Make sure your HornetQ enabled server was started with the following properites:
      ]
 }
 ```
+## Artifacts
+The latest snapshot build (executable jar) can be found here:
+[http://artifacts.filecloud.ch/content/repositories/snapshots/ch/filecloud/ch.filecloud.queue-monitor/](http://artifacts.filecloud.ch/content/repositories/snapshots/ch/filecloud/ch.filecloud.queue-monitor/)
 
 
 
