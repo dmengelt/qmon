@@ -1,4 +1,4 @@
-package ch.filecloud.queuemonitor.client.queue;
+package ch.filecloud.queuemonitor.client.hornetq.queue;
 
 /**
  * Created by domi on 8/4/14.
@@ -10,10 +10,10 @@ public final class QueueInfo {
     private final long messagesAdded;
     private final long consumerCount;
 
-    public QueueInfo(String queueName, long messageCount, long messagesAddes, long consumerCount) {
+    public QueueInfo(String queueName, long messageCount, long messagesAdded, long consumerCount) {
         this.queueName = queueName;
         this.messageCount = messageCount;
-        this.messagesAdded = messagesAddes;
+        this.messagesAdded = messagesAdded;
         this.consumerCount = consumerCount;
     }
 

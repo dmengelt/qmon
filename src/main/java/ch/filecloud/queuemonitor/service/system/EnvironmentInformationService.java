@@ -12,7 +12,7 @@ import java.util.List;
  * @author dominik.mengelt@gmail.com
  */
 @Service
-public class SystemInformationService {
+public class EnvironmentInformationService {
 
     @Inject
     private QmonEnvironmentConfiguration qmonEnvironmentConfiguration;

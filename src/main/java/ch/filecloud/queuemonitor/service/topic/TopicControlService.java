@@ -1,9 +1,9 @@
 package ch.filecloud.queuemonitor.service.topic;
 
-import ch.filecloud.queuemonitor.client.topic.HornetQTopicClient;
-import ch.filecloud.queuemonitor.client.topic.TopicInfo;
-import ch.filecloud.queuemonitor.service.exception.TopicSubscriptionNotDurableException;
-import ch.filecloud.queuemonitor.service.exception.TopicSubscriptionNotFoundException;
+import ch.filecloud.queuemonitor.client.hornetq.topic.HornetQTopicClient;
+import ch.filecloud.queuemonitor.client.hornetq.topic.TopicInfo;
+import ch.filecloud.queuemonitor.service.topic.exception.TopicSubscriptionNotDurableException;
+import ch.filecloud.queuemonitor.service.topic.exception.TopicSubscriptionNotFoundException;
 import org.hornetq.api.jms.management.SubscriptionInfo;
 import org.springframework.stereotype.Service;
 

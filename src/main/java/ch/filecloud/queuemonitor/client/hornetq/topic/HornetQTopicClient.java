@@ -1,7 +1,7 @@
-package ch.filecloud.queuemonitor.client.topic;
+package ch.filecloud.queuemonitor.client.hornetq.topic;
 
-import ch.filecloud.queuemonitor.client.AbstractHornetQClient;
-import ch.filecloud.queuemonitor.service.exception.QmonConnectionException;
+import ch.filecloud.queuemonitor.client.hornetq.AbstractHornetQClient;
+import ch.filecloud.queuemonitor.client.hornetq.exception.QmonConnectionException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hornetq.api.core.management.ObjectNameBuilder;

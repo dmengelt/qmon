@@ -1,4 +1,4 @@
-package ch.filecloud.queuemonitor.service.exception;
+package ch.filecloud.queuemonitor.service.topic.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

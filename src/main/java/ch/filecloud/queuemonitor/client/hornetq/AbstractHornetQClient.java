@@ -1,4 +1,4 @@
-package ch.filecloud.queuemonitor.client;
+package ch.filecloud.queuemonitor.client.hornetq;
 
 import ch.filecloud.queuemonitor.client.jmx.JmxConnectionClient;
 import org.hornetq.api.core.management.ObjectNameBuilder;

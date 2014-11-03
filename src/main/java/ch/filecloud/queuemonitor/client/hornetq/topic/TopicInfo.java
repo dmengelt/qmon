@@ -1,4 +1,4 @@
-package ch.filecloud.queuemonitor.client.topic;
+package ch.filecloud.queuemonitor.client.hornetq.topic;
 
 import org.hornetq.api.jms.management.SubscriptionInfo;
 

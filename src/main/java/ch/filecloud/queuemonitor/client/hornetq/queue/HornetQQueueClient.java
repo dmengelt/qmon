@@ -1,7 +1,7 @@
-package ch.filecloud.queuemonitor.client.queue;
+package ch.filecloud.queuemonitor.client.hornetq.queue;
 
-import ch.filecloud.queuemonitor.client.AbstractHornetQClient;
-import ch.filecloud.queuemonitor.service.exception.QmonConnectionException;
+import ch.filecloud.queuemonitor.client.hornetq.AbstractHornetQClient;
+import ch.filecloud.queuemonitor.client.hornetq.exception.QmonConnectionException;
 import org.hornetq.api.core.management.ObjectNameBuilder;
 import org.hornetq.api.jms.management.JMSQueueControl;
 import org.springframework.stereotype.Service;

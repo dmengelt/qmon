@@ -1,7 +1,7 @@
 package ch.filecloud.queuemonitor.service.queue;
 
-import ch.filecloud.queuemonitor.client.queue.HornetQQueueClient;
-import ch.filecloud.queuemonitor.client.queue.QueueInfo;
+import ch.filecloud.queuemonitor.client.hornetq.queue.HornetQQueueClient;
+import ch.filecloud.queuemonitor.client.hornetq.queue.QueueInfo;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;

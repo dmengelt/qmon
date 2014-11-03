@@ -8,12 +8,12 @@ import java.util.List;
 /**
  * Created by domi on 10/5/14.
  */
-public class SystemInformationResponseDTO {
+public class EnvironmentInformationResponseDTO {
 
     public static final String ENVIRONMENTS = "environments";
     private List<QmonEnvironment> qmonEnvironments;
 
-    public SystemInformationResponseDTO(List<QmonEnvironment> qmonEnvironments) {
+    public EnvironmentInformationResponseDTO(List<QmonEnvironment> qmonEnvironments) {
         this.qmonEnvironments = qmonEnvironments;
     }
 

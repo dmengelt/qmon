@@ -1,6 +1,6 @@
 package ch.filecloud.queuemonitor.web.api.queue;
 
-import ch.filecloud.queuemonitor.client.queue.QueueInfo;
+import ch.filecloud.queuemonitor.client.hornetq.queue.QueueInfo;
 import ch.filecloud.queuemonitor.service.queue.QueueControlService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;

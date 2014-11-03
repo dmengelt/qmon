@@ -6,7 +6,7 @@ angular.module('hornetqMonitorApp')
         $scope.defaultEnv = '';
 
         $scope.getEnvironmenetInfo = function () {
-            $http.get('/monitor/system/environments').success(function(data, status, headers, config) {
+            $http.get('/monitor/environments/').success(function(data, status, headers, config) {
                 $scope.environments = data.environments;
                 $scope.defaultEnv = $scope.environments[0];
             }).error(function(data, status, headers, config) {
@@ -21,7 +21,7 @@ angular.module('hornetqMonitorApp')
                 environmentName: $scope.defaultEnv.name
             };
 
-            $http.put('/monitor/system/environments', $scope.env).success(function(data, status, headers, config) {
+            $http.post('/monitor/environments/', $scope.env).success(function(data, status, headers, config) {
                 console.log('Successfully updated the environment to ' + $scope.defaultEnv.name);
                 $route.reload();
             }).error(function(data, status, headers, config) {
