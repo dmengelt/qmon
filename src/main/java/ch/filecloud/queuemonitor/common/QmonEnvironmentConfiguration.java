@@ -22,7 +22,7 @@ public class QmonEnvironmentConfiguration {
     private static final String ENCODING = "UTF-8";
     private static final String QMON_DEFAULT_CONFIG_JSON = "qmonDefaultConfig.json";
 
-    private List<QmonEnvironment> environments;
+    private List<QmonEnvironment> environments; // used by Gson
     private QmonEnvironment currentEnvironment;
 
     public QmonEnvironment getCurrent() {
@@ -43,16 +43,12 @@ public class QmonEnvironmentConfiguration {
     }
 
     private QmonEnvironment get(String environmentName) {
-        for(QmonEnvironment qmonEnvironment : environments) {
-            if(qmonEnvironment.getName().equals(environmentName)) {
-                return qmonEnvironment;
-            }
-        }
-
-        return getCurrent();
+        return environments.stream().filter(env -> env.getName().equals(environmentName))
+                                    .findFirst()
+                                    .orElse(getCurrent());
     }
 
-    public static QmonEnvironmentConfiguration create(String filename) throws IOException {
+    public static QmonEnvironmentConfiguration create(String filename) {
         if (filename != null && !filename.isEmpty()) {
             File configFile = new File(filename);
             try {
@@ -66,10 +62,13 @@ public class QmonEnvironmentConfiguration {
         return parseDefaultConfiguration();
     }
 
-    private static QmonEnvironmentConfiguration parseDefaultConfiguration() throws IOException {
-        InputStream defaultConfigJson = QmonEnvironmentConfiguration.class.getClassLoader().getResourceAsStream(QMON_DEFAULT_CONFIG_JSON);
-        String defaultConfig = IOUtils.toString(defaultConfigJson, ENCODING);
-        return createInternal(defaultConfig);
+    private static QmonEnvironmentConfiguration parseDefaultConfiguration() {
+        try {
+            InputStream defaultConfigJson = QmonEnvironmentConfiguration.class.getClassLoader().getResourceAsStream(QMON_DEFAULT_CONFIG_JSON);
+            return createInternal(IOUtils.toString(defaultConfigJson, ENCODING));
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Unable to parse config JSON", e);
+        }
     }
 
     private static QmonEnvironmentConfiguration createInternal(String configJson) {

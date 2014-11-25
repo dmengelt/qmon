@@ -14,6 +14,7 @@ import javax.management.ObjectName;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**org
  * Created by domi on 10/19/14.
@@ -28,18 +29,9 @@ public class HornetQTopicClient extends AbstractHornetQClient {
     }
 
     public List<TopicInfo> getTopics() {
-        List<String> topicNames = getTopicNames();
-        List<TopicInfo> topicInfos = new ArrayList<TopicInfo>();
-
-        for(String topicName : topicNames) {
-            topicInfos.add(createTopicInfo(topicName));
-        }
-
-        return topicInfos;
-    }
-
-    public List<String> getTopicNames() {
-        return Arrays.asList(getJMSServerControl().getTopicNames());
+        List<String> topicNames = Arrays.asList(getJMSServerControl().getTopicNames());
+        return topicNames.stream().map(t -> createTopicInfo(t))
+                                  .collect(Collectors.toList());
     }
 
     // TODO - introduce custom DTO in order to avoid hornetq specific import on service level

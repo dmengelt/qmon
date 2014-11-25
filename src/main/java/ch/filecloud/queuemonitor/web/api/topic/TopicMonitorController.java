@@ -40,9 +40,9 @@ public class TopicMonitorController {
     public ResponseEntity<String> dropDurableSubscription(@PathVariable(TOPIC_NAME) String topicName, @PathVariable(SUBSCRIPTION_NAME) String subscriptionName) {
         try {
             topicControlService.dropDurableSubscription(topicName, subscriptionName);
-            return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (TopicSubscriptionNotFoundException e) {
-            return new ResponseEntity<String>("Unable to find subscription '" + subscriptionName + "' for topic '" + topicName + "'",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Unable to find subscription '" + subscriptionName + "' for topic '" + topicName + "'",HttpStatus.NOT_FOUND);
         }
     }
 
