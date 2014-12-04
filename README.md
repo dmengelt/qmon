@@ -4,7 +4,7 @@ qMon is a simple [Spring Boot](http://projects.spring.io/spring-boot/) app to co
 
 ![qMon index view](/static/sc_index.png)
 ## Installation & Usage
-1) Install [node.js](http://nodejs.org/download/), [Maven](http://maven.apache.org/download.cgi) and [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+1) Install [node.js](http://nodejs.org/download/), [Maven](http://maven.apache.org/download.cgi) and [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
 2) Install [bower](http://bower.io/) and the used bower packages:
 ```bash

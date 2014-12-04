@@ -34,15 +34,10 @@ public class TopicControlService {
             throw new TopicSubscriptionNotFoundException();
         }
 
-        for (SubscriptionInfo subscription : subscriptions) {
-            if (subscription.getName().equals(subscriptionName)) {
+        SubscriptionInfo subscription = subscriptions.stream().filter(s -> s.getName().equals(subscriptionName) && s.isDurable())
+                                                              .findFirst().orElseThrow(TopicSubscriptionNotDurableException::new);
 
-                if (!subscription.isDurable()) {
-                    throw new TopicSubscriptionNotDurableException();
-                }
+        hornetQManagementClient.dropDurableSubscription(topicName, subscription.getClientID(), subscription.getName());
 
-                hornetQManagementClient.dropDurableSubscription(topicName, subscription.getClientID(), subscription.getName());
-            }
-        }
     }
 }

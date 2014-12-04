@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 
 import javax.management.MBeanServerInvocationHandler;
 import javax.management.ObjectName;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by domi on 10/20/14.
@@ -24,11 +25,9 @@ public class HornetQQueueClient extends AbstractHornetQClient {
     }
 
     public List<QueueInfo> getQueues() {
-        List<QueueInfo> queueInfos = new ArrayList<QueueInfo>();
-        for (String queue : getJMSServerControl().getQueueNames()) {
-            queueInfos.add(createQueueInfo(queue.replace(JMS_QUEUE_PREFIX,"")));
-        }
-        return queueInfos;
+        List<String> queueNames = Arrays.asList(getJMSServerControl().getTopicNames());
+        return queueNames.stream().map(q -> createQueueInfo(q.replace(JMS_QUEUE_PREFIX,"")))
+                                  .collect(Collectors.toList());
     }
 
     public void clearMessages(String queueName) {

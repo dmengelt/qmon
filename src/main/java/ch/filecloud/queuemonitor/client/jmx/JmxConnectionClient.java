@@ -33,7 +33,7 @@ public class JmxConnectionClient {
         }
 
         try {
-            JMXConnector connector = JMXConnectorFactory.connect(new JMXServiceURL(qmonEnvironment.getJmxRemoteUrl()), new HashMap<String, Object>());
+            JMXConnector connector = JMXConnectorFactory.connect(new JMXServiceURL(qmonEnvironment.getJmxRemoteUrl()), new HashMap<>());
             MBeanServerConnection mBeanServerConnection = connector.getMBeanServerConnection();
             mBeanServerConnections.put(qmonEnvironment.getName(), mBeanServerConnection);
             return mBeanServerConnection;
@@ -45,7 +45,7 @@ public class JmxConnectionClient {
 
     @PostConstruct
     public void postConstruct() {
-        mBeanServerConnections = new HashMap<String, MBeanServerConnection>();
+        mBeanServerConnections = new HashMap<>();
     }
 
 }
