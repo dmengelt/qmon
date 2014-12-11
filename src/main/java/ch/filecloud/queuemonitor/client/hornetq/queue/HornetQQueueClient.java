@@ -25,7 +25,7 @@ public class HornetQQueueClient extends AbstractHornetQClient {
     }
 
     public List<QueueInfo> getQueues() {
-        List<String> queueNames = Arrays.asList(getJMSServerControl().getTopicNames());
+        List<String> queueNames = Arrays.asList(getJMSServerControl().getQueueNames());
         return queueNames.stream().map(q -> createQueueInfo(q.replace(JMS_QUEUE_PREFIX,"")))
                                   .collect(Collectors.toList());
     }

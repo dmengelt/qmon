@@ -12,12 +12,16 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.1.4.RELEASE</version>
+        <version>1.2.0.RELEASE</version>
     </parent>
 
     <properties>
+        <commons.io.version>2.4</commons.io.version>
+        <gson.version>2.3</gson.version>
         <hornetq.client.version>2.4.3.Final</hornetq.client.version>
         <java.version>1.8</java.version>
+        <javax.jms.version>2.0</javax.jms.version>
+        <jmx.remote.version>4.0</jmx.remote.version>
     </properties>
 
     <dependencies>
@@ -34,18 +38,18 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-        <dependency>
             <groupId>javax.jms</groupId>
             <artifactId>javax.jms-api</artifactId>
-            <version>2.0</version>
+            <version>${javax.jms.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hornetq</groupId>
@@ -60,17 +64,17 @@
         <dependency>
             <groupId>org.glassfish.main.external</groupId>
             <artifactId>jmxremote_optional-repackaged</artifactId>
-            <version>4.0</version>
+            <version>${jmx.remote.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.4</version>
+            <version>${commons.io.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.3</version>
+            <version>${gson.version}</version>
         </dependency>
     </dependencies>
 
@@ -79,6 +83,19 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>
