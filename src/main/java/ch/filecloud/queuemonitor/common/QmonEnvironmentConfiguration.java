@@ -2,18 +2,16 @@ package ch.filecloud.queuemonitor.common;
 
 import com.google.gson.Gson;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by medo on 02/10/14.
+ * Created by domi on 02/10/14.
  */
 public class QmonEnvironmentConfiguration {
 
@@ -44,30 +42,22 @@ public class QmonEnvironmentConfiguration {
 
     private QmonEnvironment get(String environmentName) {
         return environments.stream().filter(env -> env.getName().equals(environmentName))
-                                    .findFirst()
-                                    .orElse(getCurrent());
+                .findFirst()
+                .orElse(getCurrent());
     }
 
     public static QmonEnvironmentConfiguration create(String filename) {
-        if (filename != null && !filename.isEmpty()) {
-            File configFile = new File(filename);
-            try {
-                String configJson = FileUtils.readFileToString(configFile, ENCODING);
-                return createInternal(configJson);
-            } catch (IOException e) {
-                LOGGER.warn("An error occurred while trying to read the specified config file. Falling back to default config.");
-            }
-
+        if (filename == null || filename.isEmpty()) {
+            throw new QmonConfigurationFailedException("No qMon configuration specified! Please use -Dqmon.config=/your/config.json");
         }
-        return parseDefaultConfiguration();
-    }
 
-    private static QmonEnvironmentConfiguration parseDefaultConfiguration() {
         try {
-            InputStream defaultConfigJson = QmonEnvironmentConfiguration.class.getClassLoader().getResourceAsStream(QMON_DEFAULT_CONFIG_JSON);
-            return createInternal(IOUtils.toString(defaultConfigJson, ENCODING));
+            File configFile = new File(filename);
+            String configJson = FileUtils.readFileToString(configFile, ENCODING);
+            return createInternal(configJson);
         } catch (IOException e) {
-            throw new IllegalArgumentException("Unable to parse config JSON", e);
+            LOGGER.warn("An error occurred while trying to read the specified config file!");
+            throw new QmonConfigurationFailedException("An error occurred while trying to read the specified config file " + filename, e);
         }
     }
 
