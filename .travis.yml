@@ -1,5 +1,7 @@
 language: java
-before_script:
-- npm install -g grunt-cli
 jdk:
   - oraclejdk8
+before_script:
+- npm install -g grunt-cli
+- npm install
+
