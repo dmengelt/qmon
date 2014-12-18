@@ -15,6 +15,9 @@ module.exports = function (grunt) {
     // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
 
+    // grunt-bump
+    grunt.loadNpmTasks('grunt-bump');
+
     // Configurable paths for the application
     var appConfig = {
         app: require('./bower.json').appPath || 'src/main/webapp',
@@ -342,6 +345,20 @@ module.exports = function (grunt) {
             unit: {
                 configFile: '<%= yeoman.webapp %>/karma.conf.js',
                 singleRun: true
+            }
+        },
+
+        bump: {
+            options: {
+              files: ['package.json', 'bower.json'],
+              updateConfigs: [],
+              commit: false,
+             
+              createTag: false,
+            
+              push: false,
+             
+              globalReplace: false
             }
         }
     });

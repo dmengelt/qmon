@@ -97,6 +97,26 @@
                     </archive>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>pl.allegro</groupId>
+                <artifactId>grunt-maven-plugin</artifactId>
+                <version>1.4.1</version>
+                <configuration>
+                    <gruntOptions>
+                        <gruntOption>--setversion=${project.version}</gruntOption>
+                    </gruntOptions>
+                    <target>bump</target>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>grunt</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 

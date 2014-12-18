@@ -1,6 +1,6 @@
 {
   "name": "hornetqMonitorApp",
-  "version": "0.0.4",
+  "version": "0.0.2-SNAPSHOT",
   "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.1",
