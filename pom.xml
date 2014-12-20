@@ -99,27 +99,39 @@
                     </archive>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>pl.allegro</groupId>
-                <artifactId>grunt-maven-plugin</artifactId>
-                <version>${grunt.maven.plugin}</version>
-                <configuration>
-                    <gruntOptions>
-                        <gruntOption>--setversion=${project.version}</gruntOption>
-                    </gruntOptions>
-                    <target>bump</target>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>grunt</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
+
+    <!-- this profile is used in order to update the version within package.json and bower.json
+         to be the same as the maven ${project.version}. please see 'bump' config within Gruntfile.js -->
+    <profiles>
+        <profile>
+            <id>update-versions</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>pl.allegro</groupId>
+                        <artifactId>grunt-maven-plugin</artifactId>
+                        <version>${grunt.maven.plugin}</version>
+                        <configuration>
+                            <gruntOptions>
+                                <gruntOption>--setversion=${project.version}</gruntOption>
+                            </gruntOptions>
+                            <target>bump</target>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>grunt</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <distributionManagement>
         <repository>
