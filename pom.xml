@@ -120,16 +120,16 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
+    <pluginRepositories>
+        <pluginRepository>
             <id>filecloud-releases</id>
             <url>http://artifacts.filecloud.ch/content/repositories/releases/</url>
-        </repository>
-        <repository>
+        </pluginRepository>
+        <pluginRepository>
             <id>filecloud-snapshots</id>
             <url>http://artifacts.filecloud.ch/content/repositories/snapshots</url>
-        </repository>
-    </repositories>
+        </pluginRepository>
+    </pluginRepositories>
 
     <distributionManagement>
         <repository>
