@@ -17,13 +17,13 @@
 
     <properties>
         <commons.io.version>2.4</commons.io.version>
-        <grunt.maven.plugin>1.4.1</grunt.maven.plugin>
         <gson.version>2.3</gson.version>
         <hornetq.client.version>2.4.3.Final</hornetq.client.version>
         <java.version>1.8</java.version>
         <javax.jms.version>2.0</javax.jms.version>
         <jmx.remote.version>4.0</jmx.remote.version>
         <maven.jar.plugin>2.5</maven.jar.plugin>
+        <version.bump.maven.plugin.version>0.0.1-SNAPSHOT</version.bump.maven.plugin.version>
     </properties>
 
     <dependencies>
@@ -99,39 +99,37 @@
                     </archive>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>ch.filecloud</groupId>
+                <artifactId>version-bump-maven-plugin</artifactId>
+                <version>${version.bump.maven.plugin.version}</version>
+                <configuration>
+                    <files>
+                        <file>package.json</file>
+                        <file>bower.json</file>
+                    </files>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>bump</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
-    <!-- this profile is used in order to update the version within package.json and bower.json
-         to be the same as the maven ${project.version}. please see 'bump' config within Gruntfile.js -->
-    <profiles>
-        <profile>
-            <id>update-versions</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>pl.allegro</groupId>
-                        <artifactId>grunt-maven-plugin</artifactId>
-                        <version>${grunt.maven.plugin}</version>
-                        <configuration>
-                            <gruntOptions>
-                                <gruntOption>--setversion=${project.version}</gruntOption>
-                            </gruntOptions>
-                            <target>bump</target>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <phase>process-resources</phase>
-                                <goals>
-                                    <goal>grunt</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+    <repositories>
+        <repository>
+            <id>filecloud-releases</id>
+            <url>http://artifacts.filecloud.ch/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>filecloud-snapshots</id>
+            <url>http://artifacts.filecloud.ch/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
 
     <distributionManagement>
         <repository>

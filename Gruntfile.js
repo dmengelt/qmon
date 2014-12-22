@@ -16,7 +16,7 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
 
     // grunt-bump
-    grunt.loadNpmTasks('grunt-bump');
+    // grunt.loadNpmTasks('grunt-bump');
 
     // Configurable paths for the application
     var appConfig = {
@@ -348,16 +348,16 @@ module.exports = function (grunt) {
             }
         },
 
-        bump: {
-            options: {
-              files: ['package.json', 'bower.json'],
-              updateConfigs: [],
-              commit: false,
-              createTag: false,
-              push: false,
-              globalReplace: false
-            }
-        }
+        //bump: {
+        //    options: {
+        //      files: ['package.json', 'bower.json'],
+        //      updateConfigs: [],
+        //      commit: false,
+        //      createTag: false,
+        //      push: false,
+        //      globalReplace: false
+        //    }
+        //}
     });
 
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
